@@ -1,0 +1,31 @@
+{
+  "name": "microsoft-onedrive-component",
+  "version": "0.0.1",
+  "description": "elastic.io Microsoft OneDrive component",
+  "engines": {
+    "node": "12"
+  },
+  "scripts": {
+    "pretest": "eslint spec lib verifyCredentials.js --fix",
+    "test": "mocha spec --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:elasticio/microsoft-onedrive-component.git"
+  },
+  "author": "elastic.io GmbH",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "elasticio-node": "0.0.9",
+    "elasticio-sailor-nodejs": "2.6.5"
+  },
+  "devDependencies": {
+    "@elastic.io/component-logger": "0.0.1",
+    "chai": "4.2.0",
+    "eslint": "6.1.0",
+    "eslint-config-airbnb": "18.0.1",
+    "eslint-plugin-import": "2.18.2",
+    "mocha": "6.2.0",
+    "sinon": "7.4.1"
+  }
+}
