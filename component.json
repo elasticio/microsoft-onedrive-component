@@ -3,14 +3,59 @@
   "description": "Integration component that can read and write to Microsoft OneDrive",
   "buildType": "docker",
   "docsUrl": "https://github.com/elasticio/microsoft-onedrive-component",
+  "envVars": {
+    "OAUTH_CLIENT_ID": {
+      "required": true,
+      "description": "Your Microsoft Graph OAuth client key"
+    },
+    "OAUTH_CLIENT_SECRET": {
+      "required": true,
+      "description": "Your Microsoft Graph OAuth client secret"
+    }
+  },
   "credentials": {
     "fields": {
-
+      "oauth2": {
+        "label": "Authentication",
+        "viewClass": "OAuthFieldView",
+        "required": true
+      }
+    },
+    "oauth2": {
+      "client_id": "{{OAUTH_CLIENT_ID}}",
+      "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+      "auth_uri": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+      "token_uri": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+      "scopes": ["offline_access", "Files.ReadWrite.All"]
     }
   },
   "triggers": {
   },
   "actions": {
-
+    "readFile": {
+      "title": "Dummy Action",
+      "description": "Dummy action to test credentials",
+      "main": "./lib/actions/dummyAction.js",
+      "metadata": {
+        "in": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "string",
+              "required": false
+            }
+          }
+        },
+        "out": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "string",
+              "required": false
+            }
+          }
+        }
+      }
+    }
   }
 }
