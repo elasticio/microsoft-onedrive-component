@@ -1,4 +1,4 @@
-const { OAuth2RestClient } = require('@elastic.io/component-commons-library');
+const { Client } = require('./lib/client');
 
 /* eslint-disable-next-line no-unused-vars */
 module.exports = async function verifyCredentials(cfg, cb) {
@@ -6,14 +6,10 @@ module.exports = async function verifyCredentials(cfg, cb) {
   /* eslint-disable-next-line no-param-reassign */
   cfg.oauth2.tokenExpiryTime = new Date(new Date().getTime() + 10000);
 
-  const client = new OAuth2RestClient({ logger: this.logger }, cfg);
-  const response = await client.makeRequest({
-    url: 'https://graph.microsoft.com/v1.0/me/drives',
-    method: 'GET',
-    urlIsSegment: false,
-  });
+  const client = new Client(this.logger, cfg);
+  const response = await client.getMyDrives();
 
-  if (response.value) {
+  if (response.length > 0) {
     return { verified: true };
   }
 
