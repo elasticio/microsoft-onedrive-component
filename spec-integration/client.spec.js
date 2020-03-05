@@ -33,6 +33,7 @@ describe('Microsoft OneDrive Client Test', () => {
     cfg.driveId = process.env.DRIVE_ID;
     const result = await new Client(logger, cfg).getChildrenFiles('/base_folder/inner_folder');
     expect(result.length > 0).to.equal(true);
+    // eslint-disable-next-line no-prototype-builtins
     expect(result.filter((item) => item.hasOwnProperty('folder')).length).to.equal(0);
   });
 
@@ -42,8 +43,10 @@ describe('Microsoft OneDrive Client Test', () => {
 
     const result = await new Client(logger, cfg).uploadFile(
       '/base_folder/inner_folder/verifyCredentials.js',
-      fileStream);
-    expect(result.length > 0).to.equal(true);
+      fileStream,
+    );
+    expect(result).to.equal(undefined);
+    // eslint-disable-next-line no-prototype-builtins
     expect(result.filter((item) => item.hasOwnProperty('folder')).length).to.equal(0);
   });
 
@@ -52,7 +55,6 @@ describe('Microsoft OneDrive Client Test', () => {
     const client = new Client(logger, cfg);
 
     const result = await client.downloadFile('/base_folder/inner_folder/png.png');
-
     expect(result.length > 0).to.equal(true);
   });
 
