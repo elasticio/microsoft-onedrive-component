@@ -32,7 +32,7 @@
   "triggers": {
   },
   "actions": {
-    "readFile": {
+    "dummyAction": {
       "title": "Dummy Action",
       "description": "Dummy action to test credentials",
       "main": "./lib/actions/dummyAction.js",
@@ -50,6 +50,31 @@
           "type": "object",
           "properties": {
             "data": {
+              "type": "string",
+              "required": false
+            }
+          }
+        }
+      }
+    },
+    "deleteItem": {
+      "title": "Delete Item Action",
+      "description": "Action to delete file by provided path",
+      "main": "./lib/actions/deleteItem.js",
+      "metadata": {
+        "in": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        "out": {
+          "type": "object",
+          "properties": {
+            "path": {
               "type": "string",
               "required": false
             }

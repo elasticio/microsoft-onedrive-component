@@ -20,7 +20,8 @@
     "@elastic.io/component-commons-library": "0.0.7",
     "@elastic.io/oih-standard-library": "1.0.1",
     "elasticio-node": "0.0.9",
-    "elasticio-sailor-nodejs": "2.6.5"
+    "elasticio-sailor-nodejs": "2.6.5",
+    "request": "2.88.2"
   },
   "devDependencies": {
     "@elastic.io/component-logger": "0.0.1",
@@ -30,6 +31,7 @@
     "eslint-config-airbnb": "18.0.1",
     "eslint-plugin-import": "2.18.2",
     "mocha": "6.2.0",
+    "nock": "12.0.2",
     "sinon": "7.4.1"
   }
 }
