@@ -29,41 +29,14 @@
       "scopes": ["offline_access", "Files.ReadWrite.All"]
     }
   },
-  "triggers": {
-  },
   "actions": {
-    "dummyAction": {
-      "title": "Dummy Action",
-      "description": "Dummy action to test credentials",
-      "main": "./lib/actions/dummyAction.js",
-      "metadata": {
-        "in": {
-          "type": "object",
-          "properties": {
-            "data": {
-              "type": "string",
-              "required": false
-            }
-          }
-        },
-        "out": {
-          "type": "object",
-          "properties": {
-            "data": {
-              "type": "string",
-              "required": false
-            }
-          }
-        }
-      }
-    },
     "deleteItem": {
       "title": "Delete Item Action",
       "description": "Action to delete file by provided path",
       "main": "./lib/actions/deleteItem.js",
       "fields": {
         "driveId": {
-          "label": "Object type to delete",
+          "label": "Object path to delete",
           "required": true,
           "viewClass": "SelectView",
           "model": "getDisks",
