@@ -32,8 +32,8 @@ describe('verifyCredentials unit', () => {
     cfg.oauth2.refresh_token = process.env.REFRESH_TOKEN;
     cfg.oauth2.tokenExpiryTime = new Date(new Date().getTime() - 10000);
     cfg.authorizationServerTokenEndpointUrl = 'https://login.microsoftonline.com/common/oauth2/v2.0/token';
-    cfg.oauth2_field_client_id = process.env.CLIENT_ID;
-    cfg.oauth2_field_client_secret = process.env.CLIENT_SECRET;
+    cfg.oauth2_field_client_id = process.env.OAUTH_CLIENT_ID;
+    cfg.oauth2_field_client_secret = process.env.OAUTH_CLIENT_SECRET;
 
     const result = await verifyCredentials.call({ logger }, cfg, (a) => a);
     expect(result).to.deep.equal({ verified: true });
