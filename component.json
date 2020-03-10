@@ -61,6 +61,15 @@
       "title": "Delete Item Action",
       "description": "Action to delete file by provided path",
       "main": "./lib/actions/deleteItem.js",
+      "fields": {
+        "driveId": {
+          "label": "Object type to delete",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getDisks",
+          "prompt": "Select a disk"
+        }
+      },
       "metadata": {
         "in": {
           "type": "object",

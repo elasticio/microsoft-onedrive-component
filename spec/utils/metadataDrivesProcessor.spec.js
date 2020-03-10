@@ -54,7 +54,7 @@ describe('metadataDrivesProcessor', () => {
         ],
       });
 
-    const result = await metadataDrivesProcessor.getMetadata.call(self, cfg);
+    const result = await metadataDrivesProcessor.getDisks.call(self, cfg);
     expect(result).to.deep.equal({ 2281488: 'Some Name' });
   });
 });
