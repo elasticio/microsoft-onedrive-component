@@ -19,7 +19,11 @@ describe('Microsoft OneDrive Client Test', () => {
         expires_in: 3600,
         ext_expires_in: 3600,
         tokenExpiryTime: new Date(new Date().getTime() + 10000),
+        client_id: process.env.CLIENT_ID,
+        client_secret: process.env.CLIENT_SECRET,
         access_token: process.env.ACCESS_TOKEN,
+        refresh_token: process.env.REFRESH_TOKEN,
+        token_uri: 'https://login.microsoftonline.com/common/oauth2/v2.0/token'
       },
     };
   });
