@@ -8,11 +8,8 @@
 * [Requirements](#requirements)
    * [Environment variables](#environment-variables)
 * [Credentials](#credentials)
-     
-* [Triggers](#triggers)
-   
 * [Actions](#actions)
-   
+    [Delete Action](#delete-action)
 * [Known Limitations](#known-limitations)
 * [License](#license)
 
@@ -38,10 +35,18 @@ Name|Mandatory|Description|Values|
 |`ATTACHMENT_MAX_SIZE`| false | For `elastic.io` attachments configuration. Maximal possible attachment size in bytes. By default set to 1000000 and according to platform limitations CAN'T be bigger than that. | Up to `1000000` bytes|
 
 ## Credentials
-
-## Triggers
+To create new credentials you need to authorize in Microsoft system using OAuth2 protocol.
 
 ## Actions
+### Delete action
+Action to delete item from OneDrive by provided path in selected disc.
+
+#### Input fields description
+* **Drive Identity** - OneDrive instance to work with. Selects by owner
+
+#### Metadata fields description
+* **Path** - Full path to item to delete
+
 
 ## License
 

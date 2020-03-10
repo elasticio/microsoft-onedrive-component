@@ -36,7 +36,7 @@
       "main": "./lib/actions/deleteItem.js",
       "fields": {
         "driveId": {
-          "label": "Object path to delete",
+          "label": "Drive Identity",
           "required": true,
           "viewClass": "SelectView",
           "model": "getDisks",
