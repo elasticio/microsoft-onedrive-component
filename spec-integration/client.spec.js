@@ -23,7 +23,7 @@ describe('Microsoft OneDrive Client Test', () => {
         client_secret: process.env.OAUTH_CLIENT_SECRET,
         access_token: process.env.ACCESS_TOKEN,
         refresh_token: process.env.REFRESH_TOKEN,
-        token_uri: 'https://login.microsoftonline.com/common/oauth2/v2.0/token'
+        token_uri: 'https://login.microsoftonline.com/common/oauth2/v2.0/token',
       },
     };
   });
