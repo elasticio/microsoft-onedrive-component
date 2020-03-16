@@ -41,6 +41,12 @@ describe('Microsoft OneDrive Client Test', () => {
     expect(result.filter((item) => item.hasOwnProperty('folder')).length).to.equal(0);
   });
 
+  it('should return file metadata', async () => {
+    cfg.driveId = process.env.DRIVE_ID;
+    const result = await new Client(logger, cfg).getFileMetadata('/base_folder/inner_folder');
+    expect(result.name).to.equal('inner_folder');
+  });
+
   it('should upload file by provided name', async () => {
     cfg.driveId = process.env.DRIVE_ID;
     const fileStream = fs.createReadStream('./verifyCredentials.js');
