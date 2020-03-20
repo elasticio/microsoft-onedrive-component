@@ -46,7 +46,7 @@ Action upsert(create or replace) with first file from attachment by provided pat
 * **Drive Identity** - OneDrive instance to work with. Selects by owner
 
 #### Metadata fields description
-* **Path** - Full path to item to delete
+* **Path** - Full path to item to create or replace
 
 ### Delete action
 Action to delete item from OneDrive by provided path in selected disc.
