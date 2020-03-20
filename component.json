@@ -53,15 +53,7 @@
             }
           }
         },
-        "out": {
-          "type": "object",
-          "properties": {
-            "path": {
-              "type": "string",
-              "required": false
-            }
-          }
-        }
+        "out":"./lib/schemas/file.out.json"
       }
     },
     "deleteItem": {

@@ -82,11 +82,6 @@ describe('get File', () => {
     const emitterCalls = self.emit.getCalls();
     expect(result.body).to.deep.equal({
       '@odata.context': "https://graph.microsoft.com/v1.0/$metadata#drives('drive_id')/root/$entity",
-      attachment: {
-        'content-type': 'text/plain',
-        size: 123,
-        url: 'http://api-service/put_url',
-      },
       size: 123,
       file: {
         mimeType: 'text/plain',
