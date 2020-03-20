@@ -98,9 +98,9 @@
         }
       }
     },
-    "mergeFile": {
-      "title": "Merge file",
-      "description": "Action merges(create or replace) file by path",
+    "upsertFile": {
+      "title": "Upsert File",
+      "description": "Action upsert(create or replace) file by path",
       "main": "./lib/actions/mergeFile.js",
       "fields": {
         "driveId": {
@@ -121,15 +121,7 @@
             }
           }
         },
-        "out": {
-          "type": "object",
-          "properties": {
-            "path": {
-              "type": "string",
-              "required": false
-            }
-          }
-        }
+        "out":"./lib/schemas/file.out.json"
       }
     }
   }

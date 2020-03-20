@@ -35,7 +35,8 @@ describe('Microsoft OneDrive Client Test', () => {
       '/delete.png',
       imageStream,
     );
-    // TODO create dynamicly base_folder/inner_folder
+    // TODO create dynamicly base_folder/inner_folder and upload one file to this folders
+    // this requires create folder method in client
   });
   it('should return my drives list', async () => {
     const result = await client.getMyDrives();
@@ -43,7 +44,7 @@ describe('Microsoft OneDrive Client Test', () => {
   });
 
   it('should return drive children files', async () => {
-    const result = await client.getChildrenFiles('/base_folder/inner_folder/');
+    const result = await client.getChildrenFiles('/base_folder/inner_folder');
     expect(result.length > 0).to.equal(true);
     // eslint-disable-next-line no-prototype-builtins
     expect(result.filter((item) => item.hasOwnProperty('folder')).length).to.equal(0);
@@ -61,7 +62,7 @@ describe('Microsoft OneDrive Client Test', () => {
       '/test.json',
       fileStream,
     );
-    expect(result).to.exist;
+    expect(result.name).to.be.eql('test.json');
   });
 
   it('should download file by provided name', async () => {
@@ -71,6 +72,15 @@ describe('Microsoft OneDrive Client Test', () => {
 
   it('should delete file by provided name', async () => {
     const result = await client.deleteItem('/delete.png');
+    expect(result).to.be.eql('');
+  });
+
+  it('should check that file is exist provided name', async () => {
+    const result = await client.isExist('/test.json');
     expect(result).to.exist;
+  });
+  it('should check that file is not exist provided name', async () => {
+    const result = await client.isExist('/notExist.json');
+    expect(result).to.be.false;
   });
 });
