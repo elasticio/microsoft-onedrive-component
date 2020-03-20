@@ -63,6 +63,40 @@
           }
         }
       }
+    },
+    "mergeFile": {
+      "title": "Merge file",
+      "description": "Action merges(create or replace) file by path",
+      "main": "./lib/actions/mergeFile.js",
+      "fields": {
+        "driveId": {
+          "label": "Drive Identity",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getDisks",
+          "prompt": "Select a disk"
+        }
+      },
+      "metadata": {
+        "in": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        "out": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "required": false
+            }
+          }
+        }
+      }
     }
   }
 }
