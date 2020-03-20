@@ -101,7 +101,7 @@
     "upsertFile": {
       "title": "Upsert File",
       "description": "Action upsert(create or replace) file by path",
-      "main": "./lib/actions/mergeFile.js",
+      "main": "./lib/actions/upsertFile.js",
       "fields": {
         "driveId": {
           "label": "Drive Identity",
