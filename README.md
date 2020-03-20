@@ -40,6 +40,14 @@ Name|Mandatory|Description|Values|
 To create new credentials you need to authorize in Microsoft system using OAuth2 protocol.
 
 ## Actions
+### Upsert Action 
+Action upsert(create or replace) with first file from attachment by provided path in Microsoft One Drive
+#### Input fields description
+* **Drive Identity** - OneDrive instance to work with. Selects by owner
+
+#### Metadata fields description
+* **Path** - Full path to item to delete
+
 ### Delete action
 Action to delete item from OneDrive by provided path in selected disc.
 

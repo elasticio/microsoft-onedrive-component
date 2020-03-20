@@ -1,6 +1,6 @@
 {
   "name": "microsoft-onedrive-component",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "elastic.io Microsoft OneDrive component",
   "author": "elastic.io GmbH",
   "license": "Apache-2.0",
