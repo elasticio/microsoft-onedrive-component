@@ -47,7 +47,10 @@ describe('Upsert File', () => {
         name: 'file.any',
       });
     const result = await upsertFile.process.call(self, msg, cfg);
-    expect(result.body.result.id).to.be.eql(1);
+    expect(result.body.result).to.be.eql({
+      id: 1,
+      name: 'file.any',
+    });
   });
   it('Fails if no attachments provided', async () => {
     try {
