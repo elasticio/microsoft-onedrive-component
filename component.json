@@ -139,7 +139,7 @@
         "conflictBehaviour" : {
           "label": "Conflict Behaviour",
           "required": false,
-          "viewClass": "SelectViewWithNote",
+          "viewClass": "SelectView",
           "model" : {
             "Fail" : "fail",
             "Replace": "replace",
