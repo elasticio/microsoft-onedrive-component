@@ -21,6 +21,7 @@ const cfg = {
     token_uri: 'https://login.microsoftonline.com/common/oauth2/v2.0/token',
   },
   driveId: process.env.DRIVE_ID,
+  conflictBehaviour: 'replace',
 };
 const client = new Client(logger, cfg);
 describe('Microsoft OneDrive Client Test', () => {
@@ -35,8 +36,8 @@ describe('Microsoft OneDrive Client Test', () => {
       '/delete.png',
       imageStream,
     );
-    // TODO create dynamicly base_folder/inner_folder and upload one file to this folders
-    // this requires create folder method in client
+    const baseFolder = await client.createFolder('root', 'base_folder');
+    await client.createFolder(baseFolder.id, 'inner_folder');
   });
   it('should return my drives list', async () => {
     const result = await client.getMyDrives();
@@ -44,7 +45,7 @@ describe('Microsoft OneDrive Client Test', () => {
   });
 
   it('should return drive children files', async () => {
-    const result = await client.getChildrenFiles('/base_folder/inner_folder');
+    const result = await client.getChildrenFiles('');
     expect(result.length > 0).to.equal(true);
     // eslint-disable-next-line no-prototype-builtins
     expect(result.filter((item) => item.hasOwnProperty('folder')).length).to.equal(0);
@@ -79,8 +80,34 @@ describe('Microsoft OneDrive Client Test', () => {
     const result = await client.isExist('/test.json');
     expect(result).to.exist;
   });
+  it('should return root for empty string and /', async () => {
+    let result = await client.isExist('');
+    expect(result).to.be.eql('root');
+    result = await client.isExist('/');
+    expect(result).to.be.eql('root');
+  });
   it('should check that file is not exist provided name', async () => {
     const result = await client.isExist('/notExist.json');
     expect(result).to.be.false;
+  });
+  it('should create folder', async () => {
+    const test = await client.createFolder('root', 'test');
+    expect(test.name).to.be.eql('test');
+  });
+  it('should rename folder if it exists and conflictBehaviour=rename', async () => {
+    client.cfg.conflictBehaviour = 'rename';
+    const test1 = await client.createFolder('root', 'test1');
+    const test2 = await client.createFolder('root', 'test1');
+    expect(test1.name).to.not.be.eql(test2.name);
+  });
+  it('should fail if folder exists and conflictBehaviour=fail', async () => {
+    try {
+      client.cfg.conflictBehaviour = 'fail';
+      await client.createFolder('root', 'test3');
+      await client.createFolder('root', 'test3');
+      expect('test shoulld fail earlier', true).to.be.false;
+    } catch (e) {
+      expect(e).to.exist;
+    }
   });
 });
