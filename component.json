@@ -141,12 +141,12 @@
           "required": false,
           "viewClass": "SelectView",
           "model" : {
-            "Fail" : "fail",
-            "Replace": "replace",
-            "Rename": "rename"
+            "fail" : "Fail",
+            "replace": "Replace",
+            "rename": "Rename"
           },
-          "promt": "What to do if folder already exists?",
-          "note": "Default: Fail"
+          "prompt": "What to do if folder already exists?",
+          "description": "Default: Fail"
         }
       },
       "metadata": {
