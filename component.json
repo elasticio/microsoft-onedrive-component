@@ -139,14 +139,13 @@
         "conflictBehaviour" : {
           "label": "Conflict Behaviour",
           "required": false,
-          "viewClass": "SelectWithNoteView",
+          "viewClass": "SelectView",
           "model" : {
             "fail" : "Fail",
             "replace": "Replace",
             "rename": "Rename"
           },
-          "prompt": "What to do if folder already exist?",
-          "note": "Default: Fail"
+          "prompt": "What to do if folder already exist? Default: Fail"
         }
       },
       "metadata": {
