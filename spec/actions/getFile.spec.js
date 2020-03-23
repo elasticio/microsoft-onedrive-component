@@ -25,6 +25,7 @@ describe('get File', () => {
   beforeEach(() => {
     cfg = {
       driveId: 'drive_id',
+      attachFile: true,
       oauth2: {
         token_type: 'Bearer',
         scope: 'Files.ReadWrite.All',
@@ -102,6 +103,58 @@ describe('get File', () => {
     expect(emitterCalls.length).to.equal(0);
   });
 
+  it('get file no attachment', async () => {
+    cfg.attachFile = false;
+    nock('https://graph.microsoft.com/v1.0')
+      .get(`/drives/${cfg.driveId}/root:/${msg.body.path}`)
+      .reply(200, {
+        '@odata.context': "https://graph.microsoft.com/v1.0/$metadata#drives('drive_id')/root/$entity",
+        createdDateTime: '2020-03-04T14:41:33.073Z',
+        id: '549662B6F880DEF3!116',
+        lastModifiedDateTime: '2020-03-05T14:09:22.24Z',
+        size: 123,
+        name: 'file.any',
+        file: {
+          mimeType: 'text/plain',
+        },
+      });
+
+    const result = await getFile.process.call(self, msg, cfg);
+
+    const emitterCalls = self.emit.getCalls();
+    expect(result.body).to.deep.equal({
+      '@odata.context': "https://graph.microsoft.com/v1.0/$metadata#drives('drive_id')/root/$entity",
+      size: 123,
+      file: {
+        mimeType: 'text/plain',
+      },
+      createdDateTime: '2020-03-04T14:41:33.073Z',
+      id: '549662B6F880DEF3!116',
+      lastModifiedDateTime: '2020-03-05T14:09:22.24Z',
+      name: 'file.any',
+    });
+    expect(result.attachments).to.deep.equal({});
+    expect(emitterCalls.length).to.equal(0);
+  });
+
   it('process file not exists case', async () => {
+    nock('https://graph.microsoft.com/v1.0')
+      .get(`/drives/${cfg.driveId}/root:/${msg.body.path}`)
+      .reply(404, {
+        error: {
+          code: 'itemNotFound',
+          message: 'Item does not exist',
+          innerError: {
+            'request-id': 'abde8d63-49db-4753-99bb-c1ea3b1a47bf',
+            date: '2020-03-23T10:55:18',
+          },
+        },
+      });
+
+    try {
+      await getFile.process.call(self, msg, cfg);
+    } catch (err) {
+      expect(err.data.error.code).to.equal('itemNotFound');
+    }
   });
 });

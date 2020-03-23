@@ -45,6 +45,7 @@ Action to get item from OneDrive by provided path in selected disc.
 
 #### Input fields description
 * **Drive Identity** - OneDrive instance to work with. Selects by owner
+* **Add file content** - checkbox for attaching files content to action response
 
 #### Metadata fields description
 * **Path** - Full path to item to create or replace

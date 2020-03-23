@@ -41,6 +41,10 @@
           "viewClass": "SelectView",
           "model": "getDisks",
           "prompt": "Select a disk"
+        },
+        "attachFile": {
+          "label": "Add file content",
+          "viewClass": "CheckBoxView"
         }
       },
       "metadata": {
