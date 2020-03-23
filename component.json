@@ -30,6 +30,40 @@
     }
   },
   "actions": {
+    "lookupFile": {
+      "title": "Get file",
+      "description": "Action to get file by provided path",
+      "main": "./lib/actions/getFile.js",
+      "fields": {
+        "driveId": {
+          "label": "Drive Identity",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getDisks",
+          "prompt": "Select a disk"
+        }
+      },
+      "metadata": {
+        "in": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        "out": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "required": false
+            }
+          }
+        }
+      }
+    },
     "deleteItem": {
       "title": "Delete file",
       "description": "Action to delete file by provided path",
@@ -62,6 +96,32 @@
             }
           }
         }
+      }
+    },
+    "upsertFile": {
+      "title": "Upsert File",
+      "description": "Action upsert(create or replace) file by path",
+      "main": "./lib/actions/upsertFile.js",
+      "fields": {
+        "driveId": {
+          "label": "Drive Identity",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getDisks",
+          "prompt": "Select a disk"
+        }
+      },
+      "metadata": {
+        "in": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        "out":"./lib/schemas/file.out.json"
       }
     }
   }
