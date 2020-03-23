@@ -13,6 +13,7 @@ const { expect } = chai;
 const self = {
   emit: sinon.spy(),
   logger,
+  AttachmentProcessor: {},
 };
 
 describe('get File', () => {
