@@ -8,8 +8,10 @@
 * [Requirements](#requirements)
    * [Environment variables](#environment-variables)
 * [Credentials](#credentials)
+* [Triggers](#triggers)
+    * [Get New And Updated Files Polling](#get-new-and-updated-files-polling)
 * [Actions](#actions)
-    [Delete Action](#delete-action)
+    * [Delete Action](#delete-action)
 * [Known Limitations](#known-limitations)
 * [License](#license)
 
@@ -38,6 +40,21 @@ Name|Mandatory|Description|Values|
 
 ## Credentials
 To create new credentials you need to authorize in Microsoft system using OAuth2 protocol.
+
+## Triggers
+### Get New And Updated Files Polling
+Triggers to get all new and updated files since last polling.
+
+#### List of Expected Config fields
+* **Drive Identity** - OneDrive instance to work with. Selects by owner
+* **Folder path** - Dropdown list with folder path where new and updated path should be polled
+* **Emit Behaviour** -  Options are: default is `Emit Individually` emits each object in separate message, `Fetch All` emits all objects in one message
+* **Start Time** - Start datetime of polling. Default min date:-271821-04-20T00:00:00.000Z
+* **End Time** - End datetime of polling. Default max date: +275760-09-13T00:00:00.000Z
+* **Size Of Polling Page** - Indicates the size of pages to be fetched. Defaults to 1000
+* **Expand Children** - checkbox for polling files from child folders
+* **Add file content** - checkbox for attaching files content to action response
+
 
 ## Actions
 ### Get file
