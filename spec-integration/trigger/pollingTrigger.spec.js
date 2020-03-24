@@ -40,6 +40,7 @@ describe('Microsoft OneDrive Polling Trigger Test', () => {
     cfg.emitBehaviour = 'emitIndividually';
     cfg.itemId = 'root';
     cfg.attachFile = true;
+    cfg.expandChildren = true;
     await pollingTrigger.process.call(self, {}, cfg, {});
     expect(emit.callCount).to.equal(2);
   });
