@@ -24,10 +24,11 @@ const cfg = {
   conflictBehaviour: 'replace',
 };
 const client = new Client(logger, cfg);
+let downloadedFile;
 describe('Microsoft OneDrive Client Test', () => {
   before(async () => {
     const testStream = fs.createReadStream('./spec-integration/resources/test.json');
-    await client.uploadFile(
+    downloadedFile = await client.uploadFile(
       '/download.json',
       testStream,
     );
@@ -40,15 +41,21 @@ describe('Microsoft OneDrive Client Test', () => {
     await client.createFolder(baseFolder.id, 'inner_folder');
   });
   it('should return my drives list', async () => {
-    const result = await client.getMyDrives();
+    const result = await client.gegetChildrentMyDrives();
     expect(result[0].driveType).to.equal('personal');
   });
 
   it('should return drive children files', async () => {
     const result = await client.getChildrenFiles('');
     expect(result.length > 0).to.equal(true);
-    // eslint-disable-next-line no-prototype-builtins
-    expect(result.filter((item) => item.hasOwnProperty('folder')).length).to.equal(0);
+    expect(result.filter((item) => Object.prototype.hasOwnProperty.call(item, 'folder')).length).to.equal(0);
+  });
+
+  it('should return drive all children', async () => {
+    const result = await client.getChildren('root');
+    expect(result.length > 0).to.equal(true);
+    const folderCount = result.filter((item) => Object.prototype.hasOwnProperty.call(item, 'folder')).length;
+    expect(folderCount > 0).to.equal(true);
   });
 
   it('should return file metadata', async () => {
@@ -69,6 +76,12 @@ describe('Microsoft OneDrive Client Test', () => {
   it('should download file by provided name', async () => {
     const result = await client.downloadFile('/download.json');
     expect(result).to.exist;
+  });
+
+  it('should download file by itemId', async () => {
+    const result = await client.downloadFileByItemId(downloadedFile.id);
+    expect(Object.prototype.hasOwnProperty.call(result, 'responseUrl')).to.equal(true);
+    expect(result.responseUrl).to.contains(downloadedFile.name);
   });
 
   it('should delete file by provided name', async () => {
