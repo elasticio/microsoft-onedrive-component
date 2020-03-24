@@ -29,6 +29,68 @@
       "scopes": ["offline_access", "Files.ReadWrite.All"]
     }
   },
+  "triggers": {
+    "getNewAndUpdatedObjectsPolling": {
+      "main": "./lib/triggers/pollingTrigger",
+      "title": "Get New And Updated Files Polling",
+      "description": "Polling trigger",
+      "type": "polling",
+      "fields": {
+        "driveId": {
+          "label": "Drive Identity",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getDisks",
+          "prompt": "Select a disk"
+        },
+        "itemId": {
+          "label": "Folder path",
+          "required": false,
+          "viewClass": "SelectView",
+          "model": "getFolderPaths",
+          "prompt": "Select a folder path"
+        },
+        "emitBehaviour": {
+          "label": "Emit Behaviour",
+          "viewClass": "SelectView",
+          "required": false,
+          "prompt": "Default Emit Individually",
+          "model": {
+            "emitIndividually": "Emit Individually",
+            "fetchAll": "Fetch All"
+          }
+        },
+        "startTime": {
+          "label": "Start Time",
+          "viewClass": "TextFieldView",
+          "required": false,
+          "note": "Default: minimum time",
+          "placeholder": "Format ISO 8601: 2019-11-21T04:08:01Z"
+        },
+        "endTime": {
+          "label": "End Time",
+          "viewClass": "TextFieldView",
+          "required": false,
+          "note": "Default: maximum time",
+          "placeholder": "Format ISO 8601: 2019-11-21T04:08:01Z"
+        },
+        "pageSize": {
+          "label": "Size Of Polling Page",
+          "viewClass": "TextFieldView",
+          "required": false,
+          "placeholder": "Default: 1000"
+        },
+        "expandChildren": {
+          "label": "Expand Children",
+          "viewClass": "CheckBoxView"
+        },
+        "attachFile": {
+          "label": "Add file content",
+          "viewClass": "CheckBoxView"
+        }
+      }
+    }
+  },
   "actions": {
     "lookupFile": {
       "title": "Get file",
