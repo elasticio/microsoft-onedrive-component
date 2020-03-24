@@ -40,23 +40,29 @@ Name|Mandatory|Description|Values|
 To create new credentials you need to authorize in Microsoft system using OAuth2 protocol.
 
 ## Actions
-### Upsert Action 
+
+### Create Folder Action 
+Create new folder in provided `path`. If `path` not exist component will fail.
+#### Input fields description
+* **Drive Identity** - OneDrive instance to work with. Selects by owner
+* **Conflict Behaviour** - behaviour in case folder already exists. Default: `Fail`. Options: `Fail`, `Replace`, `Rename` 
+#### Metadata fields description
+* **Path** - Path to to folder where new folder will be created. Use empty string or `/` for root
+* **Name** - Name of new folder
+
+### Upsert File Action 
 Action upsert(create or replace) with first file from attachment by provided path in Microsoft One Drive
 #### Input fields description
 * **Drive Identity** - OneDrive instance to work with. Selects by owner
-
 #### Metadata fields description
 * **Path** - Full path to item to create or replace
 
 ### Delete action
 Action to delete item from OneDrive by provided path in selected disc.
-
 #### Input fields description
 * **Drive Identity** - OneDrive instance to work with. Selects by owner
-
 #### Metadata fields description
 * **Path** - Full path to item to delete
-
 
 ## License
 
