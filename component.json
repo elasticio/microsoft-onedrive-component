@@ -119,6 +119,47 @@
         },
         "out":"./lib/schemas/file.out.json"
       }
+    },
+    "createFolder": {
+      "title": "Create Folder",
+      "description": "Action create folder in path",
+      "main": "./lib/actions/createFolder.js",
+      "fields": {
+        "driveId": {
+          "label": "Drive Identity",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getDisks",
+          "prompt": "Select a disk"
+        },
+        "conflictBehaviour" : {
+          "label": "Conflict Behaviour",
+          "required": false,
+          "viewClass": "SelectView",
+          "model" : {
+            "fail" : "Fail",
+            "replace": "Replace",
+            "rename": "Rename"
+          },
+          "prompt": "What to do if folder already exist? Default: Fail"
+        }
+      },
+      "metadata": {
+        "in": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "required": true
+            },
+            "path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        "out":"./lib/schemas/file.out.json"
+      }
     }
   }
 }
