@@ -41,6 +41,10 @@
           "viewClass": "SelectView",
           "model": "getDisks",
           "prompt": "Select a disk"
+        },
+        "attachFile": {
+          "label": "Add file content",
+          "viewClass": "CheckBoxView"
         }
       },
       "metadata": {
@@ -53,15 +57,7 @@
             }
           }
         },
-        "out": {
-          "type": "object",
-          "properties": {
-            "path": {
-              "type": "string",
-              "required": false
-            }
-          }
-        }
+        "out":"./lib/schemas/file.out.json"
       }
     },
     "deleteItem": {

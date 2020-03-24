@@ -40,6 +40,14 @@ Name|Mandatory|Description|Values|
 To create new credentials you need to authorize in Microsoft system using OAuth2 protocol.
 
 ## Actions
+### Get file
+Action to get item from OneDrive by provided path in selected disc.
+
+#### Input fields description
+* **Drive Identity** - OneDrive instance to work with. Selects by owner
+* **Add file content** - checkbox for attaching files content to action response
+#### Metadata fields description
+* **Path** - Full path to item to create or replace
 
 ### Create Folder Action 
 Create new folder in provided `path`. If `path` not exist component will fail.
