@@ -45,7 +45,7 @@ To create new credentials you need to authorize in Microsoft system using OAuth2
 
 ## Triggers
 ### Get New And Updated Files Polling
-Triggers to get all new and updated files since last polling.
+Triggers to get all new and updated files since last polling. Polling is provided by `lastModifiedDateTime` file's property.
 
 #### List of Expected Config fields
 * **Drive Identity** - OneDrive instance to work with. Selects by owner
