@@ -31,7 +31,7 @@
   },
   "actions": {
     "lookupFile": {
-      "title": "Get file",
+      "title": "Get File",
       "description": "Action to get file by provided path",
       "main": "./lib/actions/getFile.js",
       "fields": {
@@ -61,7 +61,7 @@
       }
     },
     "deleteItem": {
-      "title": "Delete file",
+      "title": "Delete File",
       "description": "Action to delete file by provided path",
       "main": "./lib/actions/deleteItem.js",
       "fields": {
@@ -96,7 +96,7 @@
     },
     "upsertFile": {
       "title": "Upsert File",
-      "description": "Action upsert(create or replace) file by path",
+      "description": "Action upserts (create or replace) file by path",
       "main": "./lib/actions/upsertFile.js",
       "fields": {
         "driveId": {
@@ -122,7 +122,7 @@
     },
     "createFolder": {
       "title": "Create Folder",
-      "description": "Action create folder in path",
+      "description": "Action creates a new folder by provided path",
       "main": "./lib/actions/createFolder.js",
       "fields": {
         "driveId": {
