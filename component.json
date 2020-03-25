@@ -85,7 +85,7 @@
           "viewClass": "CheckBoxView"
         },
         "attachFile": {
-          "label": "Add file content",
+          "label": "Enable File Attachments",
           "viewClass": "CheckBoxView"
         }
       }
@@ -105,7 +105,7 @@
           "prompt": "Select a disk"
         },
         "attachFile": {
-          "label": "Add file content",
+          "label": "Enable File Attachments",
           "viewClass": "CheckBoxView"
         }
       },

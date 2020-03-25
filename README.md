@@ -15,6 +15,7 @@
     * [Upsert File](#upsert-file)
     * [Delete File](#delete-file)
     * [Create Folder](#create-folder)
+* [Known Limitations](#known-limitations)
 * [License](#license)
 
 ## General information  
@@ -92,6 +93,11 @@ Create new folder in provided `path`. If `path` not exist component will fail.
 #### Metadata fields description
 * **Path** - Path to to folder where new folder will be created. Use empty string or `/` for root
 * **Name** - Name of new folder
+
+## Known Limitations
+
+1. Maximal possible size for an attachment is 10 MB.
+2. Attachments mechanism does not work with [Local Agent Installation](https://support.elastic.io/support/solutions/articles/14000076461-announcing-the-local-agent-)
 
 ## License
 
