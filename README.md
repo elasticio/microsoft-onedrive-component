@@ -11,7 +11,7 @@
 * [Triggers](#triggers)
     * [Get New And Updated Files Polling](#get-new-and-updated-files-polling)
 * [Actions](#actions)
-    * [Get File](#delete-file)
+    * [Get File](#get-file)
     * [Upsert File](#upsert-file)
     * [Delete File](#delete-file)
     * [Create Folder](#create-folder)
