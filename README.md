@@ -11,8 +11,10 @@
 * [Triggers](#triggers)
     * [Get New And Updated Files Polling](#get-new-and-updated-files-polling)
 * [Actions](#actions)
-    * [Delete Action](#delete-action)
-* [Known Limitations](#known-limitations)
+    * [Get File](#delete-file)
+    * [Upsert File](#upsert-file)
+    * [Delete File](#delete-file)
+    * [Create Folder](#create-folder)
 * [License](#license)
 
 ## General information  
@@ -55,9 +57,8 @@ Triggers to get all new and updated files since last polling.
 * **Expand Children** - checkbox for polling files from child folders
 * **Add file content** - checkbox for attaching files content to action response
 
-
 ## Actions
-### Get file
+### Get File
 Action to get item from OneDrive by provided path in selected disc.
 
 #### Input fields description
@@ -66,7 +67,21 @@ Action to get item from OneDrive by provided path in selected disc.
 #### Metadata fields description
 * **Path** - Full path to item to create or replace
 
-### Create Folder Action 
+### Upsert File 
+Action upsert(create or replace) with first file from attachment by provided path in Microsoft One Drive
+#### Input fields description
+* **Drive Identity** - OneDrive instance to work with. Selects by owner
+#### Metadata fields description
+* **Path** - Full path to item to create or replace
+
+### Delete File
+Action to delete item from OneDrive by provided path in selected disc.
+#### Input fields description
+* **Drive Identity** - OneDrive instance to work with. Selects by owner
+#### Metadata fields description
+* **Path** - Full path to item to delete
+
+### Create Folder 
 Create new folder in provided `path`. If `path` not exist component will fail.
 #### Input fields description
 * **Drive Identity** - OneDrive instance to work with. Selects by owner
@@ -74,20 +89,6 @@ Create new folder in provided `path`. If `path` not exist component will fail.
 #### Metadata fields description
 * **Path** - Path to to folder where new folder will be created. Use empty string or `/` for root
 * **Name** - Name of new folder
-
-### Upsert File Action 
-Action upsert(create or replace) with first file from attachment by provided path in Microsoft One Drive
-#### Input fields description
-* **Drive Identity** - OneDrive instance to work with. Selects by owner
-#### Metadata fields description
-* **Path** - Full path to item to create or replace
-
-### Delete action
-Action to delete item from OneDrive by provided path in selected disc.
-#### Input fields description
-* **Drive Identity** - OneDrive instance to work with. Selects by owner
-#### Metadata fields description
-* **Path** - Full path to item to delete
 
 ## License
 

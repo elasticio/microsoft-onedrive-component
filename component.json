@@ -93,7 +93,7 @@
   },
   "actions": {
     "lookupFile": {
-      "title": "Get file",
+      "title": "Get File",
       "description": "Action to get file by provided path",
       "main": "./lib/actions/getFile.js",
       "fields": {
@@ -123,7 +123,7 @@
       }
     },
     "deleteItem": {
-      "title": "Delete file",
+      "title": "Delete File",
       "description": "Action to delete file by provided path",
       "main": "./lib/actions/deleteItem.js",
       "fields": {
