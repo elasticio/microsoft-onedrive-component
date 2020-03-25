@@ -56,7 +56,7 @@ Triggers to get all new and updated files since last polling. Polling is provide
 * **End Time** - End datetime of polling. Default max date: +275760-09-13T00:00:00.000Z
 * **Size Of Polling Page** - Indicates the size of pages to be fetched. Defaults to 1000
 * **Expand Children** - checkbox for polling files from child folders
-* **Add file content** - checkbox for attaching files content to action response
+* **Enable File Attachments** - checkbox for attaching files content to action response
 
 ## Actions
 ### Get File
@@ -64,7 +64,7 @@ Action to get item from OneDrive by provided path in selected disc.
 
 #### Input fields description
 * **Drive Identity** - OneDrive instance to work with. Selects by owner
-* **Add file content** - checkbox for attaching files content to action response
+* **Enable File Attachments** - checkbox for attaching files content to action response
 #### Metadata fields description
 * **Path** - Full path to item to create or replace
 #### Input example:
