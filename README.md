@@ -8,9 +8,13 @@
 * [Requirements](#requirements)
    * [Environment variables](#environment-variables)
 * [Credentials](#credentials)
+* [Triggers](#triggers)
+    * [Get New And Updated Files Polling](#get-new-and-updated-files-polling)
 * [Actions](#actions)
-    [Delete Action](#delete-action)
-* [Known Limitations](#known-limitations)
+    * [Get File](#get-file)
+    * [Upsert File](#upsert-file)
+    * [Delete File](#delete-file)
+    * [Create Folder](#create-folder)
 * [License](#license)
 
 ## General information  
@@ -22,9 +26,9 @@ This is the component for working with Microsoft OneDrive storage service on [el
 The component provides ability to connect to Microsoft OneDrive storage service.
 
 ### Completeness Matrix
-![image]()
+![image](https://user-images.githubusercontent.com/16806832/77531578-d58d1280-6e9b-11ea-8802-4ed8e492f081.png)
 
-[Completeness Matrix]()
+[Completeness Matrix](https://docs.google.com/spreadsheets/d/1xXDb039POOWOKE7Iamfuz5si7Y7bX1l8mJSuDb4Gums/edit#gid=0)
 
 ## Requirements
 
@@ -39,8 +43,22 @@ Name|Mandatory|Description|Values|
 ## Credentials
 To create new credentials you need to authorize in Microsoft system using OAuth2 protocol.
 
+## Triggers
+### Get New And Updated Files Polling
+Triggers to get all new and updated files since last polling.
+
+#### List of Expected Config fields
+* **Drive Identity** - OneDrive instance to work with. Selects by owner
+* **Folder path** - Dropdown list with folder path where new and updated path should be polled
+* **Emit Behaviour** -  Options are: default is `Emit Individually` emits each object in separate message, `Fetch All` emits all objects in one message
+* **Start Time** - Start datetime of polling. Default min date:-271821-04-20T00:00:00.000Z
+* **End Time** - End datetime of polling. Default max date: +275760-09-13T00:00:00.000Z
+* **Size Of Polling Page** - Indicates the size of pages to be fetched. Defaults to 1000
+* **Expand Children** - checkbox for polling files from child folders
+* **Add file content** - checkbox for attaching files content to action response
+
 ## Actions
-### Get file
+### Get File
 Action to get item from OneDrive by provided path in selected disc.
 
 #### Input fields description
@@ -49,7 +67,21 @@ Action to get item from OneDrive by provided path in selected disc.
 #### Metadata fields description
 * **Path** - Full path to item to create or replace
 
-### Create Folder
+### Upsert File
+Action upserts (create or replace) with first file from attachment by provided path in Microsoft One Drive
+#### Input fields description
+* **Drive Identity** - OneDrive instance to work with. Selects by owner
+#### Metadata fields description
+* **Path** - Full path to item to create or replace
+
+### Delete File
+Action to delete item from OneDrive by provided path in selected disc.
+#### Input fields description
+* **Drive Identity** - OneDrive instance to work with. Selects by owner
+#### Metadata fields description
+* **Path** - Full path to item to delete
+
+### Create Folder 
 Create new folder in provided `path`. If `path` not exist component will fail.
 #### Input fields description
 * **Drive Identity** - OneDrive instance to work with. Selects by owner
@@ -60,20 +92,6 @@ Create new folder in provided `path`. If `path` not exist component will fail.
 #### Metadata fields description
 * **Path** - Path to to folder where new folder will be created. Use empty string or `/` for root
 * **Name** - Name of new folder
-
-### Upsert File
-Action upserts (create or replace) with first file from attachment by provided path in Microsoft One Drive
-#### Input fields description
-* **Drive Identity** - OneDrive instance to work with. Selects by owner
-#### Metadata fields description
-* **Path** - Full path to item to create or replace
-
-### Delete
-Action to delete item from OneDrive by provided path in selected disc.
-#### Input fields description
-* **Drive Identity** - OneDrive instance to work with. Selects by owner
-#### Metadata fields description
-* **Path** - Full path to item to delete
 
 ## License
 
