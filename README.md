@@ -67,8 +67,8 @@ Action to get item from OneDrive by provided path in selected disc.
 #### Metadata fields description
 * **Path** - Full path to item to create or replace
 
-### Upsert File 
-Action upsert(create or replace) with first file from attachment by provided path in Microsoft One Drive
+### Upsert File
+Action upserts (create or replace) with first file from attachment by provided path in Microsoft One Drive
 #### Input fields description
 * **Drive Identity** - OneDrive instance to work with. Selects by owner
 #### Metadata fields description
@@ -85,7 +85,10 @@ Action to delete item from OneDrive by provided path in selected disc.
 Create new folder in provided `path`. If `path` not exist component will fail.
 #### Input fields description
 * **Drive Identity** - OneDrive instance to work with. Selects by owner
-* **Conflict Behaviour** - behaviour in case folder already exists. Default: `Fail`. Options: `Fail`, `Replace`, `Rename` 
+* **Conflict Behaviour** - behaviour in case folder already exists. Default: `Fail`. Options: `Fail`, `Replace`, `Rename`.
+    1. `Fail` - fails if folder with same name already exists under provided `path`
+    2. `Rename` - rename folder if folder with same name already exists under provided `path`. Examples: `exists` -> `exists_1`, `exists_1` -> `exists_1_1`
+    3. `Replace` - replace folder if folder with same name already exists under provided `path`. Note: files inside folder will not be replaced, but last modified date of folder will be updated
 #### Metadata fields description
 * **Path** - Path to to folder where new folder will be created. Use empty string or `/` for root
 * **Name** - Name of new folder
