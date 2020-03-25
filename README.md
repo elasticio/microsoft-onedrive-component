@@ -67,6 +67,12 @@ Action to get item from OneDrive by provided path in selected disc.
 * **Add file content** - checkbox for attaching files content to action response
 #### Metadata fields description
 * **Path** - Full path to item to create or replace
+#### Input example:
+```
+{
+    "path": "base_folder/inner_folder/file.any"
+}
+```
 
 ### Upsert File
 Action upserts (create or replace) with first file from attachment by provided path in Microsoft One Drive
@@ -74,13 +80,26 @@ Action upserts (create or replace) with first file from attachment by provided p
 * **Drive Identity** - OneDrive instance to work with. Selects by owner
 #### Metadata fields description
 * **Path** - Full path to item to create or replace
+#### Input example:
+```
+{
+    "path": "base_folder/inner_folder/file.any"
+}
+```
 
 ### Delete File
 Action to delete item from OneDrive by provided path in selected disc.
+Returns filename if file was deleted and empty message if already wasn't exist
 #### Input fields description
 * **Drive Identity** - OneDrive instance to work with. Selects by owner
 #### Metadata fields description
 * **Path** - Full path to item to delete
+#### Input example:
+```
+{
+    "path": "base_folder/inner_folder/file.any"
+}
+```
 
 ### Create Folder 
 Create new folder in provided `path`. If `path` not exist component will fail.
