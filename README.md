@@ -24,9 +24,9 @@ This is the component for working with Microsoft OneDrive storage service on [el
 The component provides ability to connect to Microsoft OneDrive storage service.
 
 ### Completeness Matrix
-![image]()
+![image](https://user-images.githubusercontent.com/16806832/77531578-d58d1280-6e9b-11ea-8802-4ed8e492f081.png)
 
-[Completeness Matrix]()
+[Completeness Matrix](https://docs.google.com/spreadsheets/d/1xXDb039POOWOKE7Iamfuz5si7Y7bX1l8mJSuDb4Gums/edit#gid=0)
 
 ## Requirements
 
