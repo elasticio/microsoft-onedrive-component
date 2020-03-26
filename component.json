@@ -3,6 +3,7 @@
   "description": "Integration component that can read and write to Microsoft OneDrive",
   "buildType": "docker",
   "docsUrl": "https://github.com/elasticio/microsoft-onedrive-component",
+  "useOAuthClient": true,
   "envVars": {
     "OAUTH_CLIENT_ID": {
       "required": true,
