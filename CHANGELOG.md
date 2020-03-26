@@ -1,3 +1,7 @@
-# 0.0.1 (March 2, 2020)
+# 1.0.0 (March 26, 2020)
 
-    * Project Init
+* Create Get New And Updated Files Polling Trigger
+* Create Upsert File Action
+* Create Create Folder Action
+* Create Get File Action
+* Create Delete File Action

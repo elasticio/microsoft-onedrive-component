@@ -1,0 +1,180 @@
+{
+  "type": "object",
+  "required": true,
+  "properties": {
+    "result": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "@odata.context": {
+          "type": "string",
+          "required": true
+        },
+        "@microsoft.graph.downloadUrl": {
+          "type": "string",
+          "required": true
+        },
+        "createdDateTime": {
+          "type": "string",
+          "required": true
+        },
+        "cTag": {
+          "type": "string",
+          "required": true
+        },
+        "eTag": {
+          "type": "string",
+          "required": true
+        },
+        "id": {
+          "type": "string",
+          "required": true
+        },
+        "lastModifiedDateTime": {
+          "type": "string",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "size": {
+          "type": "integer",
+          "required": true
+        },
+        "webUrl": {
+          "type": "string",
+          "required": true
+        },
+        "createdBy": {
+          "type": "object",
+          "required": true,
+          "properties": {
+            "application": {
+              "type": "object",
+              "required": true,
+              "properties": {
+                "displayName": {
+                  "type": "string",
+                  "required": true,
+                  "id": {
+                    "type": "string",
+                    "required": true
+                  }
+                }
+              },
+              "user": {
+                "type": "object",
+                "required": true,
+                "properties": {
+                  "displayName": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "id": {
+                    "type": "string",
+                    "required": true
+                  }
+                }
+              }
+            }
+          },
+          "lastModifiedBy": {
+            "type": "object",
+            "required": true,
+            "properties": {
+              "application": {
+                "type": "object",
+                "required": true,
+                "properties": {
+                  "displayName": {
+                    "type": "string",
+                    "required": true,
+                    "id": {
+                      "type": "string",
+                      "required": true
+                    }
+                  }
+                },
+                "user": {
+                  "type": "object",
+                  "required": true,
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "required": true,
+                      "id": {
+                        "type": "string",
+                        "required": true
+                      }
+                    }
+                  }
+                }
+              },
+              "parentReference": {
+                "type": "object",
+                "required": true,
+                "properties": {
+                  "driveId": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "driveType": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "id": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "path": {
+                    "type": "string",
+                    "required": true
+                  }
+                }
+              },
+              "file": {
+                "type": "object",
+                "required": true,
+                "properties": {
+                  "mimeType": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "hashes": {
+                    "type": "object",
+                    "required": true,
+                    "properties": {
+                      "quickXorHash": {
+                        "type": "string",
+                        "required": true
+                      },
+                      "sha1Hash": {
+                        "type": "string",
+                        "required": true
+                      }
+                    }
+                  }
+                }
+              },
+              "fileSystemInfo": {
+                "type": "object",
+                "required": true,
+                "properties": {
+                  "createdDateTime": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "lastModifiedDateTime": {
+                    "type": "string",
+                    "required": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

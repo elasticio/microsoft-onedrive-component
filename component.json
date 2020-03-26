@@ -30,31 +30,197 @@
     }
   },
   "triggers": {
+    "getNewAndUpdatedObjectsPolling": {
+      "main": "./lib/triggers/pollingTrigger",
+      "title": "Get New And Updated Files Polling",
+      "description": "Polling trigger",
+      "type": "polling",
+      "fields": {
+        "driveId": {
+          "label": "Drive Identity",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getDisks",
+          "prompt": "Select a disk"
+        },
+        "itemId": {
+          "label": "Folder path",
+          "required": false,
+          "viewClass": "SelectView",
+          "model": "getFolderPaths",
+          "prompt": "Select a folder path"
+        },
+        "emitBehaviour": {
+          "label": "Emit Behaviour",
+          "viewClass": "SelectView",
+          "required": false,
+          "prompt": "Default Emit Individually",
+          "model": {
+            "emitIndividually": "Emit Individually",
+            "fetchAll": "Fetch All"
+          }
+        },
+        "startTime": {
+          "label": "Start Time",
+          "viewClass": "TextFieldView",
+          "required": false,
+          "note": "Indicates the beginning time to start polling from, default 1970-01-01T00:00:00.000Z",
+          "placeholder": "1970-01-01T00:00:00.000Z"
+        },
+        "endTime": {
+          "label": "End Time",
+          "viewClass": "TextFieldView",
+          "required": false,
+          "note": "If provided, do not fetch records modified after this time (defaults to never)",
+          "placeholder": "3000-01-01T00:00:00.000Z"
+        },
+        "pageSize": {
+          "label": "Size Of Polling Page",
+          "viewClass": "TextFieldView",
+          "required": false,
+          "placeholder": "Default: 1000"
+        },
+        "expandChildren": {
+          "label": "Expand Children",
+          "viewClass": "CheckBoxView"
+        },
+        "attachFile": {
+          "label": "Enable File Attachments",
+          "viewClass": "CheckBoxView"
+        }
+      }
+    }
   },
   "actions": {
-    "readFile": {
-      "title": "Dummy Action",
-      "description": "Dummy action to test credentials",
-      "main": "./lib/actions/dummyAction.js",
+    "lookupFile": {
+      "title": "Get File",
+      "description": "Action to get file by provided path",
+      "main": "./lib/actions/getFile.js",
+      "fields": {
+        "driveId": {
+          "label": "Drive Identity",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getDisks",
+          "prompt": "Select a disk"
+        },
+        "attachFile": {
+          "label": "Enable File Attachments",
+          "viewClass": "CheckBoxView"
+        }
+      },
       "metadata": {
         "in": {
           "type": "object",
           "properties": {
-            "data": {
+            "path": {
               "type": "string",
-              "required": false
+              "required": true
+            }
+          }
+        },
+        "out":"./lib/schemas/file.out.json"
+      }
+    },
+    "deleteItem": {
+      "title": "Delete File",
+      "description": "Action to delete file by provided path",
+      "main": "./lib/actions/deleteItem.js",
+      "fields": {
+        "driveId": {
+          "label": "Drive Identity",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getDisks",
+          "prompt": "Select a disk"
+        }
+      },
+      "metadata": {
+        "in": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "required": true
             }
           }
         },
         "out": {
           "type": "object",
           "properties": {
-            "data": {
+            "path": {
               "type": "string",
               "required": false
             }
           }
         }
+      }
+    },
+    "upsertFile": {
+      "title": "Upsert File",
+      "description": "Action upserts (create or replace) file by path",
+      "main": "./lib/actions/upsertFile.js",
+      "fields": {
+        "driveId": {
+          "label": "Drive Identity",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getDisks",
+          "prompt": "Select a disk"
+        }
+      },
+      "metadata": {
+        "in": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        "out":"./lib/schemas/file.out.json"
+      }
+    },
+    "createFolder": {
+      "title": "Create Folder",
+      "description": "Action creates a new folder by provided path",
+      "main": "./lib/actions/createFolder.js",
+      "fields": {
+        "driveId": {
+          "label": "Drive Identity",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getDisks",
+          "prompt": "Select a disk"
+        },
+        "conflictBehaviour" : {
+          "label": "Conflict Behaviour",
+          "required": false,
+          "viewClass": "SelectView",
+          "model" : {
+            "fail" : "Fail",
+            "replace": "Replace",
+            "rename": "Rename"
+          },
+          "prompt": "What to do if folder already exist? Default: Fail"
+        }
+      },
+      "metadata": {
+        "in": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "required": true
+            },
+            "path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        "out":"./lib/schemas/file.out.json"
       }
     }
   }
