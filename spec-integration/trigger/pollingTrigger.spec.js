@@ -64,6 +64,14 @@ describe('Microsoft OneDrive Polling Trigger Test', () => {
     cfg.attachFile = false;
     cfg.expandChildren = true;
     await pollingTrigger.process.call(self, {}, cfg, {});
-    expect(emit.getCalls().filter((c) => c.args[0] === 'data').length).to.equal(1000);
+    const files = emit.getCalls().filter((c) => c.args[0] === 'data');
+
+    expect(files.length).to.equal(1000);
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < 999; i++) {
+      const a = files[i].args[1];
+      const b = files[i + 1].args[1];
+      expect(new Date(a.body.lastModifiedDateTime).valueOf()).to.be.not.greaterThan(new Date(b.body.lastModifiedDateTime).valueOf());
+    }
   });
 });
