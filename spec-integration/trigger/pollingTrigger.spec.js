@@ -61,7 +61,7 @@ describe('Microsoft OneDrive Polling Trigger Test', () => {
   it('should be able to retrieve many files', async () => {
     cfg.emitBehaviour = 'emitIndividually';
     cfg.itemId = '7161FC17AF0D3CE4!218';
-    cfg.attachFile = true;
+    cfg.attachFile = false;
     cfg.expandChildren = true;
     await pollingTrigger.process.call(self, {}, cfg, {});
     expect(emit.getCalls().filter((c) => c.args[0] === 'data').length).to.equal(1000);
