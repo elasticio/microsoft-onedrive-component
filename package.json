@@ -5,7 +5,7 @@
   "author": "elastic.io GmbH",
   "license": "Apache-2.0",
   "engines": {
-    "node": "12"
+    "node": "12.18.2"
   },
   "scripts": {
     "pretest": "eslint lib spec spec-integration verifyCredentials.js --fix",
