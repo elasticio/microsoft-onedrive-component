@@ -84,10 +84,10 @@ describe('pollingTrigger unit tests', () => {
   beforeEach(() => {
     uploadAttachment = sinon.stub(AttachmentProcessor.prototype, 'uploadAttachment').resolves({ config: { url: 'some_url' } });
     nock('https://graph.microsoft.com/v1.0')
-      .get(`/drives/${cfg.driveId}/items/${cfg.itemId}/children?$orderby=lastModifiedDateTime`)
+      .get(`/drives/${cfg.driveId}/items/${cfg.itemId}/children`)
       .reply(200, allObjects);
     nock('https://graph.microsoft.com/v1.0')
-      .get(`/drives/${cfg.driveId}/items/${childFolderId}/children?$orderby=lastModifiedDateTime`)
+      .get(`/drives/${cfg.driveId}/items/${childFolderId}/children`)
       .reply(200, childObjects);
     nock('https://graph.microsoft.com/v1.0')
       .get(`/drives/${cfg.driveId}/items/${txtFileId}/content`)

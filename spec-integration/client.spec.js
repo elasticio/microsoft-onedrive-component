@@ -41,7 +41,7 @@ describe('Microsoft OneDrive Client Test', () => {
     await client.createFolder(baseFolder.id, 'inner_folder');
   });
   it('should return my drives list', async () => {
-    const result = await client.gegetChildrentMyDrives();
+    const result = await client.getMyDrives();
     expect(result[0].driveType).to.equal('personal');
   });
 

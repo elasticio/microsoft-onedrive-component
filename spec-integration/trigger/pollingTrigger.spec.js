@@ -2,6 +2,7 @@
 const chai = require('chai');
 const sinon = require('sinon');
 const logger = require('@elastic.io/component-logger')();
+const { AttachmentProcessor } = require('@elastic.io/component-commons-library');
 require('dotenv').config();
 
 const pollingTrigger = require('../../lib/triggers/pollingTrigger');
@@ -28,20 +29,49 @@ const self = {
   logger,
 };
 describe('Microsoft OneDrive Polling Trigger Test', () => {
+  let attachmentProcessorStub;
+
+  beforeEach(() => {
+    attachmentProcessorStub = sinon.stub(AttachmentProcessor.prototype, 'uploadAttachment');
+    attachmentProcessorStub.returns({ config: { url: 'https://url' } });
+  });
+
+  afterEach(() => {
+    attachmentProcessorStub.restore();
+    emit.resetHistory();
+  });
+
   it('should success fetchAll', async () => {
     cfg.emitBehaviour = 'fetchAll';
-    cfg.itemId = 'root';
+    cfg.itemId = '7161FC17AF0D3CE4!139';
     cfg.attachFile = true;
     await pollingTrigger.process.call(self, {}, cfg, {});
-    expect(emit.callCount).to.equal(2);
+    expect(emit.getCalls().filter((c) => c.args[0] === 'data').length).to.equal(1);
   });
 
   it('should success emitIndividually', async () => {
     cfg.emitBehaviour = 'emitIndividually';
-    cfg.itemId = 'root';
+    cfg.itemId = '7161FC17AF0D3CE4!139';
     cfg.attachFile = true;
     cfg.expandChildren = true;
     await pollingTrigger.process.call(self, {}, cfg, {});
-    expect(emit.callCount).to.equal(2);
+    expect(emit.getCalls().filter((c) => c.args[0] === 'data').length).to.equal(7);
+  });
+
+  it('should be able to retrieve many files', async () => {
+    cfg.emitBehaviour = 'emitIndividually';
+    cfg.itemId = '7161FC17AF0D3CE4!218';
+    cfg.attachFile = false;
+    cfg.expandChildren = true;
+    await pollingTrigger.process.call(self, {}, cfg, {});
+    const files = emit.getCalls().filter((c) => c.args[0] === 'data');
+
+    expect(files.length).to.equal(1000);
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < 999; i++) {
+      const a = files[i].args[1];
+      const b = files[i + 1].args[1];
+      expect(new Date(a.body.lastModifiedDateTime).valueOf()).to.be.not.greaterThan(new Date(b.body.lastModifiedDateTime).valueOf());
+    }
   });
 });
