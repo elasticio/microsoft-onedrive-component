@@ -1,6 +1,6 @@
 {
   "name": "microsoft-onedrive-component",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "elastic.io Microsoft OneDrive component",
   "author": "elastic.io GmbH",
   "license": "Apache-2.0",
@@ -17,25 +17,25 @@
     "url": "git@github.com:elasticio/microsoft-onedrive-component.git"
   },
   "dependencies": {
-    "@elastic.io/component-commons-library": "1.1.2",
-    "@elastic.io/oih-standard-library": "1.1.1",
+    "@elastic.io/component-commons-library": "1.1.4",
+    "@elastic.io/oih-standard-library": "1.1.4",
     "async": "3.2.0",
-    "axios": "0.19.2",
+    "axios": "0.21.0",
     "elasticio-node": "0.0.9",
-    "elasticio-sailor-nodejs": "2.6.14",
+    "elasticio-sailor-nodejs": "2.6.18-dev",
     "remove-leading-slash": "1.0.1",
-    "remove-trailing-slash": "0.1.0",
+    "remove-trailing-slash": "0.1.1",
     "request": "2.88.2"
   },
   "devDependencies": {
     "@elastic.io/component-logger": "0.0.1",
     "chai": "4.2.0",
     "dotenv": "8.2.0",
-    "eslint": "7.5.0",
+    "eslint": "7.12.0",
     "eslint-config-airbnb": "18.2.0",
-    "eslint-plugin-import": "2.22.0",
-    "mocha": "8.0.1",
-    "nock": "13.0.2",
-    "sinon": "9.0.2"
+    "eslint-plugin-import": "2.22.1",
+    "mocha": "8.2.0",
+    "nock": "13.0.4",
+    "sinon": "9.2.0"
   }
 }
