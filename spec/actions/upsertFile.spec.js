@@ -61,7 +61,7 @@ describe('Upsert File', () => {
       }, cfg);
       expect('should fail on proocess call', true).to.be.false;
     } catch (e) {
-      expect(e.message).to.be.eql('Error: Attachment not found in message: {"body":{"path":"/path/to/file.any"}}');
+      expect(e.message).to.be.eql('Error: Attachment not found in incoming message');
     }
   });
 });
