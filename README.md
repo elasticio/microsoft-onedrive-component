@@ -1,4 +1,9 @@
 # microsoft-onedrive-component
+
+[![CircleCI](https://circleci.com/gh/elasticio/microsoft-onedrive-component.svg?style=svg)](https://circleci.com/gh/elasticio/microsoft-onedrive-component)
+
+[![CLA assistant](https://cla-assistant.io/readme/badge/elasticio/microsoft-onedrive-component)](https://cla-assistant.io/elasticio/microsoft-onedrive-component)
+
 ## Table of Contents
 
 * [General information](#general-information)
