@@ -1,4 +1,9 @@
 # microsoft-onedrive-component
+
+[![CircleCI](https://circleci.com/gh/elasticio/microsoft-onedrive-component.svg?style=svg&circle-token=c65a9b9ebc39636ce754e6dab495d17f7b661ba5)](https://circleci.com/gh/elasticio/microsoft-onedrive-component)
+
+[![CLA assistant](https://cla-assistant.io/readme/badge/elasticio/microsoft-onedrive-component)](https://cla-assistant.io/elasticio/microsoft-onedrive-component)
+
 ## Table of Contents
 
 * [General information](#general-information)
@@ -16,6 +21,7 @@
     * [Delete File](#delete-file)
     * [Create Folder](#create-folder)
 * [Known Limitations](#known-limitations)
+* [Contribution Guidelines](#Contribution)
 * [License](#license)
 
 ## General information  
@@ -117,6 +123,10 @@ Create new folder in provided `path`. If `path` not exist component will fail.
 
 1. Maximal possible size for an attachment is 10 MB.
 2. Attachments mechanism does not work with [Local Agent Installation](https://support.elastic.io/support/solutions/articles/14000076461-announcing-the-local-agent-)
+
+## Contribution
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on how you could contribute to development of this component.
 
 ## License
 
