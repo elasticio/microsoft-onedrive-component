@@ -118,6 +118,10 @@ Create new folder in provided `path`. If `path` not exist component will fail.
 1. Maximal possible size for an attachment is 10 MB.
 2. Attachments mechanism does not work with [Local Agent Installation](https://support.elastic.io/support/solutions/articles/14000076461-announcing-the-local-agent-)
 
+## Contribution
+
+See [CONTRIBUTING.md] for more information on how you could contribute to development of this component.
+
 ## License
 
 Apache-2.0 © [elastic.io GmbH](http://elastic.io)
