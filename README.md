@@ -1,6 +1,6 @@
 # microsoft-onedrive-component
 
-[![CircleCI](https://circleci.com/gh/elasticio/microsoft-onedrive-component.svg?style=svg)](https://circleci.com/gh/elasticio/microsoft-onedrive-component)
+[![CircleCI](https://circleci.com/gh/elasticio/microsoft-onedrive-component.svg?style=svg&circle-token=c65a9b9ebc39636ce754e6dab495d17f7b661ba5)](https://circleci.com/gh/elasticio/microsoft-onedrive-component)
 
 [![CLA assistant](https://cla-assistant.io/readme/badge/elasticio/microsoft-onedrive-component)](https://cla-assistant.io/elasticio/microsoft-onedrive-component)
 
