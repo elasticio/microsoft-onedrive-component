@@ -16,6 +16,7 @@
     * [Delete File](#delete-file)
     * [Create Folder](#create-folder)
 * [Known Limitations](#known-limitations)
+* [Contribution Guidelines](#Contribution)
 * [License](#license)
 
 ## General information  
@@ -120,7 +121,7 @@ Create new folder in provided `path`. If `path` not exist component will fail.
 
 ## Contribution
 
-See [CONTRIBUTING.md] for more information on how you could contribute to development of this component.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on how you could contribute to development of this component.
 
 ## License
 
