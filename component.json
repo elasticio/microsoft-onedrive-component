@@ -34,7 +34,7 @@
     "getNewAndUpdatedObjectsPolling": {
       "main": "./lib/triggers/pollingTrigger",
       "title": "Get New And Updated Files Polling",
-      "description": "Polling trigger",
+      "note": "Polling trigger",
       "type": "polling",
       "fields": {
         "driveId": {
@@ -95,7 +95,7 @@
   "actions": {
     "lookupFile": {
       "title": "Get File",
-      "description": "Action to get file by provided path",
+      "note": "Action to get file by provided path",
       "main": "./lib/actions/getFile.js",
       "fields": {
         "driveId": {
@@ -125,7 +125,7 @@
     },
     "deleteItem": {
       "title": "Delete File",
-      "description": "Action to delete file by provided path",
+      "note": "Action to delete file by provided path",
       "main": "./lib/actions/deleteItem.js",
       "fields": {
         "driveId": {
@@ -159,7 +159,7 @@
     },
     "upsertFile": {
       "title": "Upsert File",
-      "description": "Action upserts (create or replace) file by path",
+      "note": "Action upserts (create or replace) file by path",
       "main": "./lib/actions/upsertFile.js",
       "fields": {
         "driveId": {
@@ -185,7 +185,7 @@
     },
     "createFolder": {
       "title": "Create Folder",
-      "description": "Action creates a new folder by provided path",
+      "note": "Action creates a new folder by provided path",
       "main": "./lib/actions/createFolder.js",
       "fields": {
         "driveId": {
