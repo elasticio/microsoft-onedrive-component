@@ -51,17 +51,18 @@ To create new credentials you need to authorize in Microsoft system using OAuth2
 
 ## Triggers
 ### Get New And Updated Files Polling
-Triggers to get all new and updated files since last polling. Polling is provided by `lastModifiedDateTime` file's property.
+Triggers to get all new and updated files since last polling.
+Polling is provided by `lastModifiedDateTime` file's property.
 
 #### List of Expected Config fields
-* **Drive Identity** - OneDrive instance to work with. Selects by owner
-* **Folder path** - Dropdown list with folder path where new and updated path should be polled
-* **Emit Behaviour** -  Options are: default is `Emit Individually` emits each object in separate message, `Fetch All` emits all objects in one message
-* **Start Time** - Start datetime of polling. Default min date:-271821-04-20T00:00:00.000Z
-* **End Time** - End datetime of polling. Default max date: +275760-09-13T00:00:00.000Z
-* **Size Of Polling Page** - Indicates the size of pages to be fetched. Defaults to 1000
-* **Expand Children** - checkbox for polling files from child folders
-* **Enable File Attachments** - checkbox for attaching files content to action response
+* **Drive Identity** - OneDrive instance to work with.
+* **Folder path** - Dropdown with folders to poll files from.
+* **Emit Behaviour** -  Available options: default is `Emit Individually` emits each object in separate message, `Fetch All` emits all objects in one message.
+* **Start Time** - Start datetime of polling. Default min date: `-271821-04-20T00:00:00.000Z`.
+* **End Time** - End datetime of polling. Default max date: `+275760-09-13T00:00:00.000Z`.
+* **Size Of Polling Page** - Indicates the size of pages to be fetched. Defaults to `1000`.
+* **Expand Children** - Checkbox, trigger retrieves files from subfolders of chosen path, if enabled. Disabled by default.
+* **Enable File Attachments** - Checkbox for attaching files content to response. Disabled by default.
 
 ## Actions
 ### Get File
