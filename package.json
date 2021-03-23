@@ -20,7 +20,7 @@
     "@elastic.io/component-commons-library": "1.1.4",
     "@elastic.io/oih-standard-library": "1.1.4",
     "async": "3.2.0",
-    "axios": "0.21.0",
+    "axios": "0.21.1",
     "elasticio-node": "0.0.9",
     "elasticio-sailor-nodejs": "2.6.18",
     "remove-leading-slash": "1.0.1",
