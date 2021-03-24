@@ -10,7 +10,6 @@
    * [Description](#description)
    * [Purpose](#purpose)
    * [Completeness Matrix](#completeness-matrix)
-* [Requirements](#requirements)
    * [Environment variables](#environment-variables)
 * [Credentials](#credentials)
 * [Triggers](#triggers)
@@ -37,9 +36,7 @@ The component provides ability to connect to Microsoft OneDrive storage service.
 
 [Completeness Matrix](https://docs.google.com/spreadsheets/d/1xXDb039POOWOKE7Iamfuz5si7Y7bX1l8mJSuDb4Gums/edit#gid=0)
 
-## Requirements
-
-#### Environment variables
+### Environment variables
 Name|Mandatory|Description|Values|
 |----|---------|-----------|------|
 |`OAUTH_CLIENT_ID`| true | Microsoft Graph Application OAuth2 Client ID | Can be found in your application page on [https://portal.azure.com](https://portal.azure.com) |
