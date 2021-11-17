@@ -1,6 +1,6 @@
 # 1.0.4 (November 26, 2021)
 
-* Component logo image change
+* Reduced the size of component icon file
 
 # 1.0.3 (March 25, 2021)
 
