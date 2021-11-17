@@ -1,3 +1,7 @@
+# 1.0.4 (November 26, 2021)
+
+* Component logo image change
+
 # 1.0.3 (March 25, 2021)
 
 * Update sailor version to `2.6.24`
