@@ -21,7 +21,7 @@
     "async": "3.2.0",
     "axios": "0.21.1",
     "elasticio-node": "0.0.9",
-    "elasticio-sailor-nodejs": "2.6.24",
+    "elasticio-sailor-nodejs": "2.6.26",
     "remove-leading-slash": "1.0.1",
     "remove-trailing-slash": "0.1.1",
     "request": "2.88.2"
