@@ -1,5 +1,6 @@
 {
   "title": "Microsoft OneDrive",
+  "version": "1.0.4",
   "description": "Integration component that can read and write to Microsoft OneDrive",
   "buildType": "docker",
   "docsUrl": "https://github.com/elasticio/microsoft-onedrive-component",
