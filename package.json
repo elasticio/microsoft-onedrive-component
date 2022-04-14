@@ -8,7 +8,7 @@
   },
   "scripts": {
     "pretest": "eslint lib spec spec-integration verifyCredentials.js --fix",
-    "test": "export ELASTICIO_API_USERNAME=tst && export ELASTICIO_API_KEY=tst && mocha spec --recursive",
+    "test": "export ELASTICIO_API_USERNAME=tst && export ELASTICIO_API_KEY=tst && mocha spec --recursive --timeout 50000",
     "integration-test": "mocha spec-integration --recursive --timeout 50000"
   },
   "repository": {

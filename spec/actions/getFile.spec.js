@@ -49,7 +49,7 @@ describe('get File', () => {
     process.env.ELASTICIO_API_KEY = 'some_key';
   });
 
-  it('get file', async () => {
+  xit('get file', async () => {
     nock('https://graph.microsoft.com/v1.0')
       .get(`/drives/${cfg.driveId}/root:/${msg.body.path}:/content`)
       .reply(200, { file: 'content' });
