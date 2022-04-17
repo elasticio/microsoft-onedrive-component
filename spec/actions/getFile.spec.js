@@ -1,16 +1,12 @@
-/* eslint-disable no-unused-vars */
 const chai = require('chai');
-// eslint-disable-next-line no-unused-vars
 const nock = require('nock');
 const sinon = require('sinon');
 const logger = require('@elastic.io/component-logger')();
 const { AttachmentProcessor } = require('@elastic.io/component-commons-library');
 
-// eslint-disable-next-line no-unused-vars
 const getFile = require('../../lib/actions/getFile');
 const { Client } = require('../../lib/client');
 
-// eslint-disable-next-line no-unused-vars
 const { expect } = chai;
 
 const self = {
