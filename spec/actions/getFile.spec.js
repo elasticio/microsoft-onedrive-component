@@ -18,7 +18,6 @@ const self = {
 describe('get File', () => {
   let cfg;
   let msg;
-  const maesterUri = 'http://ma.esrt';
 
   beforeEach(() => {
     cfg = {
@@ -48,8 +47,6 @@ describe('get File', () => {
   before(() => {
     process.env.ELASTICIO_API_USERNAME = 'some_name';
     process.env.ELASTICIO_API_KEY = 'some_key';
-    process.env.ELASTICIO_API_KEY = 'some_key';
-    process.env.ELASTICIO_OBJECT_STORAGE_URI = maesterUri;
   });
 
   it('get file', async () => {
