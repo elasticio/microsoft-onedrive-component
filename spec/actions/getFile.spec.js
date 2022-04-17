@@ -16,9 +16,7 @@ const self = {
 };
 
 describe('get File', () => {
-  // eslint-disable-next-line no-unused-vars
   let cfg;
-  // eslint-disable-next-line no-unused-vars
   let msg;
   const maesterUri = 'http://ma.esrt';
 
