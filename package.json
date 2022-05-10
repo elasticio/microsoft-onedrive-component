@@ -8,7 +8,7 @@
   },
   "scripts": {
     "pretest": "eslint lib spec spec-integration verifyCredentials.js --fix",
-    "test": "export ELASTICIO_API_USERNAME=tst && export ELASTICIO_API_KEY=tst && mocha spec --recursive --timeout 50000",
+    "test": "mocha spec --recursive --timeout 50000",
     "integration-test": "mocha spec-integration --recursive --timeout 50000"
   },
   "repository": {
@@ -33,7 +33,7 @@
     "eslint": "7.12.0",
     "eslint-config-airbnb": "18.2.0",
     "eslint-plugin-import": "2.22.1",
-    "mocha": "8.2.0",
+    "mocha": "9.2.2",
     "nock": "13.0.4",
     "sinon": "9.2.0"
   }
