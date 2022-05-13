@@ -1,13 +1,12 @@
 const chai = require('chai');
-// eslint-disable-next-line no-unused-vars
 const nock = require('nock');
 const sinon = require('sinon');
 const logger = require('@elastic.io/component-logger')();
+const { AttachmentProcessor } = require('@elastic.io/component-commons-library');
 
-// eslint-disable-next-line no-unused-vars
 const getFile = require('../../lib/actions/getFile');
+const { Client } = require('../../lib/client');
 
-// eslint-disable-next-line no-unused-vars
 const { expect } = chai;
 
 const self = {
@@ -17,9 +16,7 @@ const self = {
 };
 
 describe('get File', () => {
-  // eslint-disable-next-line no-unused-vars
   let cfg;
-  // eslint-disable-next-line no-unused-vars
   let msg;
 
   beforeEach(() => {
@@ -42,7 +39,10 @@ describe('get File', () => {
     };
   });
 
-  afterEach(() => self.emit.resetHistory());
+  afterEach(() => {
+    sinon.restore();
+    self.emit.resetHistory();
+  });
 
   before(() => {
     process.env.ELASTICIO_API_USERNAME = 'some_name';
@@ -50,38 +50,22 @@ describe('get File', () => {
   });
 
   it('get file', async () => {
-    nock('https://graph.microsoft.com/v1.0')
-      .get(`/drives/${cfg.driveId}/root:/${msg.body.path}:/content`)
-      .reply(200, { file: 'content' });
-
-    nock('https://graph.microsoft.com/v1.0')
-      .get(`/drives/${cfg.driveId}/root:/${msg.body.path}`)
-      .reply(200, {
-        '@odata.context': "https://graph.microsoft.com/v1.0/$metadata#drives('drive_id')/root/$entity",
-        createdDateTime: '2020-03-04T14:41:33.073Z',
-        id: '549662B6F880DEF3!116',
-        lastModifiedDateTime: '2020-03-05T14:09:22.24Z',
-        size: 123,
-        name: 'file.any',
-        file: {
-          mimeType: 'text/plain',
-        },
-      });
-
-    nock('https://api.elastic.io')
-      .post('/v2/resources/storage/signed-url')
-      .reply(200, {
-        get_url: 'http://api-service/get_url',
-        put_url: 'http://api-service/put_url',
-      });
-
-    nock('http://api-service')
-      .put('/put_url')
-      .reply(200, 'OK');
+    const getFileMetadataStub = sinon.stub(Client.prototype, 'getFileMetadata').returns({
+      '@odata.context': "https://graph.microsoft.com/v1.0/$metadata#drives('drive_id')/root/$entity",
+      createdDateTime: '2020-03-04T14:41:33.073Z',
+      id: '549662B6F880DEF3!116',
+      lastModifiedDateTime: '2020-03-05T14:09:22.24Z',
+      size: 123,
+      name: 'file.any',
+      file: {
+        mimeType: 'text/plain',
+      },
+    });
+    const downloadFile = sinon.stub(Client.prototype, 'downloadFile').returns({ file: 'content' });
+    const uploadAttachmentStub = sinon.stub(AttachmentProcessor.prototype, 'uploadAttachment').returns({ config: { url: 'https://url/' }, data: { objectId: 'id' } });
 
     const result = await getFile.process.call(self, msg, cfg);
 
-    const emitterCalls = self.emit.getCalls();
     expect(result.body).to.deep.equal({
       '@odata.context': "https://graph.microsoft.com/v1.0/$metadata#drives('drive_id')/root/$entity",
       size: 123,
@@ -97,9 +81,13 @@ describe('get File', () => {
       'file.any': {
         'content-type': 'text/plain',
         size: 123,
-        url: 'http://api-service/put_url',
+        url: 'https://url/id?storage_type=maester',
       },
     });
+    expect(getFileMetadataStub.callCount).to.be.equal(1);
+    expect(downloadFile.callCount).to.be.equal(1);
+    expect(uploadAttachmentStub.callCount).to.be.equal(1);
+    const emitterCalls = self.emit.getCalls();
     expect(emitterCalls.length).to.equal(0);
   });
 
