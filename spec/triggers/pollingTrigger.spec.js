@@ -82,7 +82,7 @@ describe('pollingTrigger unit tests', () => {
   let uploadAttachment;
 
   beforeEach(() => {
-    uploadAttachment = sinon.stub(AttachmentProcessor.prototype, 'uploadAttachment').resolves({ config: { url: 'some_url/' }, data: { objectId: 'id' } });
+    uploadAttachment = sinon.stub(AttachmentProcessor.prototype, 'uploadAttachment').resolves('id');
     nock('https://graph.microsoft.com/v1.0')
       .get(`/drives/${cfg.driveId}/items/${cfg.itemId}/children`)
       .reply(200, allObjects);
@@ -119,7 +119,7 @@ describe('pollingTrigger unit tests', () => {
     const txtFile = txtFiles[0].args[1];
     expect(txtFile.body).to.deep.equal(allObjects.value[0]);
     expect(txtFile.attachments[txtFileName]).to.deep.equal({
-      url: 'some_url/id?storage_type=maester',
+      url: '/objects/id?storage_type=maester',
       size: allObjects.value[0].size,
       'content-type': allObjects.value[0].file.mimeType,
     });
@@ -182,7 +182,7 @@ describe('pollingTrigger unit tests', () => {
     // check emittedMessage
     const emittedMessage = emitterDataCalls[0].args[1];
     expect(emittedMessage.attachments[txtFileName]).to.deep.equal({
-      url: 'some_url/id?storage_type=maester',
+      url: '/objects/id?storage_type=maester',
       size: allObjects.value[0].size,
       'content-type': allObjects.value[0].file.mimeType,
     });

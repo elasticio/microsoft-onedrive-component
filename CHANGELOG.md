@@ -1,3 +1,10 @@
+## 1.0.6 (August 26, 2022)
+
+* Update Sailor version to 2.6.29
+* Get rid of vulnerabilities in dependencies
+* Update component-commons-library version to 3.0.1
+* Update oih-standard-library version to 2.0.3
+
 ## 1.0.5 (April 14, 2022)
 * Update `component-commons-library` to read and upload attachments through `Maester`
 * Update `elasticio-sailor-nodejs` to v2.6.27
