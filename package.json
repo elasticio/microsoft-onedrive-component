@@ -16,7 +16,7 @@
     "url": "git@github.com:elasticio/microsoft-onedrive-component.git"
   },
   "dependencies": {
-    "@elastic.io/component-commons-library": "3.0.2-dev.1",
+    "@elastic.io/component-commons-library": "3.0.2",
     "@elastic.io/oih-standard-library": "2.0.3",
     "async": "3.2.3",
     "axios": "0.26.1",
