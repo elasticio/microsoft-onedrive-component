@@ -1,8 +1,7 @@
 {
   "title": "Microsoft OneDrive",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Integration component that can read and write to Microsoft OneDrive",
-  "buildType": "docker",
   "docsUrl": "https://github.com/elasticio/microsoft-onedrive-component",
   "envVars": {
     "OAUTH_CLIENT_ID": {
@@ -28,7 +27,10 @@
       "client_secret": "{{OAUTH_CLIENT_SECRET}}",
       "auth_uri": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
       "token_uri": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
-      "scopes": ["offline_access", "Files.ReadWrite.All"]
+      "scopes": [
+        "offline_access",
+        "Files.ReadWrite.All"
+      ]
     }
   },
   "triggers": {
@@ -121,7 +123,7 @@
             }
           }
         },
-        "out":"./lib/schemas/file.out.json"
+        "out": "./lib/schemas/file.out.json"
       }
     },
     "deleteItem": {
@@ -181,7 +183,7 @@
             }
           }
         },
-        "out":"./lib/schemas/file.out.json"
+        "out": "./lib/schemas/file.out.json"
       }
     },
     "createFolder": {
@@ -196,12 +198,12 @@
           "model": "getDisks",
           "prompt": "Select a disk"
         },
-        "conflictBehaviour" : {
+        "conflictBehaviour": {
           "label": "Conflict Behaviour",
           "required": false,
           "viewClass": "SelectView",
-          "model" : {
-            "fail" : "Fail",
+          "model": {
+            "fail": "Fail",
             "replace": "Replace",
             "rename": "Rename"
           },
@@ -222,7 +224,7 @@
             }
           }
         },
-        "out":"./lib/schemas/file.out.json"
+        "out": "./lib/schemas/file.out.json"
       }
     }
   }

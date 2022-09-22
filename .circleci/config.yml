@@ -72,14 +72,14 @@ commands:
 jobs:
   test:
     docker:
-      - image: circleci/node:14-stretch
+      - image: circleci/node:16-stretch
     steps:
       - checkout
       - node/install:
           node-version: << pipeline.parameters.node-version >>
       - run:
           name: Audit Dependencies
-          command: npm audit --audit-level=high
+          command: npm audit --production --audit-level=high
       - node/install-packages:
           cache-path: ./node_modules
           override-ci-command: npm install
@@ -88,7 +88,7 @@ jobs:
           command: npm test
   build:
     docker:
-      - image: circleci/node:14-stretch
+      - image: circleci/node:16-stretch
         user: root
     steps:
       - checkout

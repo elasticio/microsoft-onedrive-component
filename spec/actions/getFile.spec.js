@@ -62,7 +62,7 @@ describe('get File', () => {
       },
     });
     const downloadFile = sinon.stub(Client.prototype, 'downloadFile').returns({ file: 'content' });
-    const uploadAttachmentStub = sinon.stub(AttachmentProcessor.prototype, 'uploadAttachment').returns({ config: { url: 'https://url/' }, data: { objectId: 'id' } });
+    const uploadAttachmentStub = sinon.stub(AttachmentProcessor.prototype, 'uploadAttachment').returns('id');
 
     const result = await getFile.process.call(self, msg, cfg);
 
@@ -81,11 +81,11 @@ describe('get File', () => {
       'file.any': {
         'content-type': 'text/plain',
         size: 123,
-        url: 'https://url/id?storage_type=maester',
+        url: '/objects/id?storage_type=maester',
       },
     });
     expect(getFileMetadataStub.callCount).to.be.equal(1);
-    expect(downloadFile.callCount).to.be.equal(1);
+    expect(downloadFile.callCount).to.be.equal(0);
     expect(uploadAttachmentStub.callCount).to.be.equal(1);
     const emitterCalls = self.emit.getCalls();
     expect(emitterCalls.length).to.equal(0);
