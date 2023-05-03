@@ -1,6 +1,6 @@
 {
   "title": "Microsoft OneDrive",
-  "version": "1.0.6",
+  "version": "2.0.0-dev.1",
   "description": "Integration component that can read and write to Microsoft OneDrive",
   "docsUrl": "https://github.com/elasticio/microsoft-onedrive-component",
   "envVars": {

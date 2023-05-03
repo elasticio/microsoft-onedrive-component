@@ -84,6 +84,9 @@ jobs:
           cache-path: ./node_modules
           override-ci-command: npm install
       - run:
+          name: Audit Dependencies
+          command: npm run audit
+      - run:
           name: Running Mocha Tests
           command: npm test
   build:

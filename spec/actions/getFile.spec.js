@@ -72,17 +72,15 @@ describe('get File', () => {
       file: {
         mimeType: 'text/plain',
       },
-      createdDateTime: '2020-03-04T14:41:33.073Z',
-      id: '549662B6F880DEF3!116',
-      lastModifiedDateTime: '2020-03-05T14:09:22.24Z',
-      name: 'file.any',
-    });
-    expect(result.attachments).to.deep.equal({
-      'file.any': {
+      attachment: {
         'content-type': 'text/plain',
         size: 123,
         url: '/objects/id?storage_type=maester',
       },
+      createdDateTime: '2020-03-04T14:41:33.073Z',
+      id: '549662B6F880DEF3!116',
+      lastModifiedDateTime: '2020-03-05T14:09:22.24Z',
+      name: 'file.any',
     });
     expect(getFileMetadataStub.callCount).to.be.equal(1);
     expect(downloadFile.callCount).to.be.equal(0);
