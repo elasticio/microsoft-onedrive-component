@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "files": {
+      "type": "array",
+      "title": "Files",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL",
+            "required": true
+          },
+          "path": {
+            "type": "string",
+            "title": "Path",
+            "help": {
+              "description": "Full path to item, ex: `Monthly reports/November/Cars sales.pdf`"
+            },
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}

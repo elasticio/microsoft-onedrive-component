@@ -1,40 +1,49 @@
 {
-  "name": "microsoft-onedrive-component",
-  "description": "elastic.io Microsoft OneDrive component",
-  "author": "elastic.io GmbH",
-  "license": "Apache-2.0",
+  "homepage": "https://elastic.io",
+  "author": {
+    "name": "elastic.io GmbH",
+    "email": "info@elastic.io",
+    "url": "https://www.elastic.io"
+  },
+  "keywords": [
+    "elasticio",
+    "elasticio-component",
+    "ipaas",
+    "integration",
+    "api"
+  ],
   "engines": {
-    "node": "16.x"
+    "node": "18.x"
   },
   "scripts": {
-    "pretest": "eslint lib spec spec-integration verifyCredentials.js --fix",
-    "test": "mocha spec --recursive --timeout 50000",
-    "integration-test": "mocha spec-integration --recursive --timeout 50000"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:elasticio/microsoft-onedrive-component.git"
+    "lint": "eslint --ext .ts --quiet --fix",
+    "pretest": "eslint --ext .ts --quiet --fix && find src spec spec-integration -name \"*.js\" -type f -delete && rm -f verifyCredentials.js",
+    "test": "mocha --require ts-node/register \"spec/**/*spec.ts\" --timeout 10000",
+    "posttest": "tsc",
+    "integration-test": "npm run pretest && mocha --require ts-node/register \"spec-integration/**/*spec.ts\" --timeout 500000"
   },
   "dependencies": {
-    "@elastic.io/component-commons-library": "3.0.2",
-    "@elastic.io/oih-standard-library": "2.0.3",
-    "async": "3.2.3",
-    "axios": "0.26.1",
+    "@elastic.io/component-commons-library": "3.1.5",
+    "axios": "0.27.2",
     "elasticio-node": "0.0.9",
-    "elasticio-sailor-nodejs": "2.6.29",
-    "remove-leading-slash": "1.0.1",
-    "remove-trailing-slash": "0.1.1",
-    "request": "2.88.2"
+    "elasticio-rest-node": "1.2.7",
+    "elasticio-sailor-nodejs": "2.7.1"
   },
   "devDependencies": {
     "@elastic.io/component-logger": "0.0.1",
-    "chai": "4.2.0",
-    "dotenv": "8.2.0",
-    "eslint": "7.12.0",
-    "eslint-config-airbnb": "18.2.0",
-    "eslint-plugin-import": "2.22.1",
-    "mocha": "10.0.0",
-    "nock": "13.0.4",
-    "sinon": "9.2.0"
+    "@types/mocha": "10.0.1",
+    "@types/node": "18.16.3",
+    "@typescript-eslint/eslint-plugin": "5.59.2",
+    "@typescript-eslint/parser": "5.59.2",
+    "chai": "4.3.7",
+    "chai-as-promised": "7.1.1",
+    "dotenv": "16.0.3",
+    "eslint": "8.39.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-import": "2.27.5",
+    "mocha": "10.2.0",
+    "sinon": "15.0.4",
+    "ts-node": "10.9.1",
+    "typescript": "5.0.4"
   }
 }

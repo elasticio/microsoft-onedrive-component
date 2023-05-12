@@ -1,44 +1,27 @@
 {
-  "title": "Microsoft OneDrive",
-  "version": "1.0.6",
-  "description": "Integration component that can read and write to Microsoft OneDrive",
-  "docsUrl": "https://github.com/elasticio/microsoft-onedrive-component",
-  "envVars": {
-    "OAUTH_CLIENT_ID": {
-      "required": true,
-      "description": "Your Microsoft Graph OAuth client key"
-    },
-    "OAUTH_CLIENT_SECRET": {
-      "required": true,
-      "description": "Your Microsoft Graph OAuth client secret"
-    }
-  },
+  "title": "Microsoft OneDrive component",
+  "description": "Microsoft OneDrive component",
+  "version": "2.0.0-dev.8",
+  "authClientTypes": [
+    "oauth2"
+  ],
   "credentials": {
-    "useOAuthClient": true,
     "fields": {
-      "oauth2": {
+      "oauth": {
         "label": "Authentication",
-        "viewClass": "OAuthFieldView",
+        "viewClass": "HTTPAuthView",
         "required": true
       }
-    },
-    "oauth2": {
-      "client_id": "{{OAUTH_CLIENT_ID}}",
-      "client_secret": "{{OAUTH_CLIENT_SECRET}}",
-      "auth_uri": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
-      "token_uri": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
-      "scopes": [
-        "offline_access",
-        "Files.ReadWrite.All"
-      ]
     }
   },
-  "triggers": {
-    "getNewAndUpdatedObjectsPolling": {
-      "main": "./lib/triggers/pollingTrigger",
-      "title": "Get New And Updated Files Polling",
-      "note": "Polling trigger",
-      "type": "polling",
+  "actions": {
+    "lookupObject": {
+      "main": "./src/actions/lookupObject.js",
+      "title": "Get File",
+      "help": {
+        "description": "Get File",
+        "link": "/components/microsoft-onedrive/index.html#lookup-object"
+      },
       "fields": {
         "driveId": {
           "label": "Drive Identity",
@@ -47,185 +30,213 @@
           "model": "getDisks",
           "prompt": "Select a disk"
         },
-        "itemId": {
-          "label": "Folder path",
-          "required": false,
+        "attachFile": {
+          "label": "Enable File Attachments",
+          "viewClass": "CheckBoxView",
+          "help": {
+            "description": "If checked, file will be uploaded to local storage and link provided in response"
+          }
+        }
+      },
+      "dynamicMetadata": true
+    },
+    "upsertObject": {
+      "main": "./src/actions/upsertObject.js",
+      "title": "Upsert File",
+      "help": {
+        "description": "Upsert Object",
+        "link": "/components/microsoft-onedrive/index.html#upsert-object"
+      },
+      "fields": {
+        "driveId": {
+          "label": "Drive Identity",
+          "required": true,
           "viewClass": "SelectView",
-          "model": "getFolderPaths",
-          "prompt": "Select a folder path"
+          "model": "getDisks",
+          "prompt": "Select a disk"
+        }
+      },
+      "metadata": {
+        "in": "./src/schemas/actions/upsertObject.in.json",
+        "out": "./src/schemas/actions/upsertObject.out.json"
+      }
+    },
+    "deleteFile": {
+      "main": "./src/actions/deleteFile.js",
+      "title": "Delete File",
+      "help": {
+        "description": "",
+        "link": "/microsoft-onedrive-component/#delete-file"
+      },
+      "fields": {
+        "driveId": {
+          "label": "Drive Identity",
+          "required": true,
+          "order": 90,
+          "viewClass": "SelectView",
+          "model": "getDisks",
+          "prompt": "Select a disk"
         },
-        "emitBehaviour": {
-          "label": "Emit Behaviour",
+        "ifNotFound": {
+          "label": "Emit strategy when file not found",
+          "required": false,
+          "viewClass": "SelectView",
+          "order": 80,
+          "help": {
+            "description": "Select emit behavior in case if file does not exist (Default: Emit nothing)"
+          },
+          "placeholder": "Emit nothing",
+          "model": {
+            "emitNothing": "Emit nothing",
+            "emitEmpty": "Emit an empty object",
+            "throwError": "Throw an error"
+          }
+        }
+      },
+      "metadata": {
+        "in": "./src/schemas/actions/deleteFile.json",
+        "out": "./src/schemas/actions/deleteFile.json"
+      }
+    },
+    "createFolder": {
+      "main": "./src/actions/createFolder.js",
+      "title": "Create Folder",
+      "help": {
+        "description": "",
+        "link": "/microsoft-onedrive-component/#create-folder"
+      },
+      "fields": {
+        "driveId": {
+          "label": "Drive Identity",
+          "required": true,
+          "order": 90,
+          "viewClass": "SelectView",
+          "model": "getDisks",
+          "prompt": "Select a disk"
+        },
+        "conflictBehavior": {
+          "label": "Conflict Behavior",
+          "required": false,
+          "viewClass": "SelectView",
+          "model": {
+            "fail": "Throw an error",
+            "replace": "Replace",
+            "rename": "Rename"
+          },
+          "prompt": "What to do if folder already exist? Default: Throw an error"
+        }
+      },
+      "metadata": {
+        "in": "./src/schemas/actions/createFolder.in.json",
+        "out": "./src/schemas/actions/folder.out.json"
+      }
+    }
+  },
+  "triggers": {
+    "getNewAndUpdatedObjectsPolling": {
+      "main": "./src/triggers/getNewAndUpdatedObjectsPolling.js",
+      "title": "Get New and Updated Objects Polling",
+      "type": "polling",
+      "help": {
+        "description": "Poll for new and/or updated objects",
+        "link": "/microsoft-onedrive-component/#get-new-and-updated-objects-polling"
+      },
+      "fields": {
+        "driveId": {
+          "label": "Drive Identity",
+          "required": true,
+          "order": 90,
+          "viewClass": "SelectView",
+          "model": "getDisks",
+          "prompt": "Select a disk"
+        },
+        "path": {
+          "label": "Folders path",
+          "required": true,
+          "order": 80,
+          "viewClass": "MultiSelectView",
+          "model": "getFolderPaths",
+          "require": [
+            "driveId"
+          ],
+          "help": {
+            "description": "Select folders to follow"
+          }
+        },
+        "includeSubfolders": {
+          "label": "Include subfolders",
+          "viewClass": "CheckBoxView",
+          "required": false,
+          "order": 70,
+          "help": {
+            "description": "If checked, trigger will follow to each subfolder of selected folder. <br>❗Note: this will increase the number of API calls"
+          }
+        },
+        "attachFile": {
+          "label": "Enable File Attachments",
+          "viewClass": "CheckBoxView",
+          "required": false,
+          "order": 60,
+          "help": {
+            "description": "If checked, file will be uploaded to local storage and link provided in response"
+          }
+        },
+        "pollConfig": {
+          "label": "Time stamp field to poll on",
           "viewClass": "SelectView",
           "required": false,
-          "prompt": "Default Emit Individually",
+          "order": 50,
+          "placeholder": "Last Modified",
           "model": {
-            "emitIndividually": "Emit Individually",
-            "fetchAll": "Fetch All"
+            "createdDateTime": "Created",
+            "lastModifiedDateTime": "Last Modified"
+          },
+          "prompt": "Please select a Time stamp field to poll on. Default: Last Modified"
+        },
+        "emitBehavior": {
+          "viewClass": "SelectView",
+          "label": "Emit Behavior",
+          "required": false,
+          "order": 40,
+          "placeholder": "Emit individually",
+          "prompt": "Select an output method. Defaults to: Emit individually",
+          "model": {
+            "emitIndividually": "Emit individually",
+            "emitPage": "Emit page"
+          }
+        },
+        "pageSize": {
+          "label": "Page Size",
+          "viewClass": "TextFieldView",
+          "required": false,
+          "order": 35,
+          "placeholder": "999",
+          "help": {
+            "description": "Indicates the size of pages to be fetched per request, defaults to 999, max 999"
           }
         },
         "startTime": {
           "label": "Start Time",
           "viewClass": "TextFieldView",
           "required": false,
-          "note": "Indicates the beginning time to start polling from, default 1970-01-01T00:00:00.000Z",
-          "placeholder": "1970-01-01T00:00:00.000Z"
+          "order": 30,
+          "placeholder": "1970-01-01T00:00:00Z",
+          "help": {
+            "description": "Indicates the beginning time to start polling from, default 1970-01-01T00:00:00Z"
+          }
         },
         "endTime": {
           "label": "End Time",
           "viewClass": "TextFieldView",
           "required": false,
-          "note": "If provided, do not fetch records modified after this time (defaults to never)",
-          "placeholder": "3000-01-01T00:00:00.000Z"
-        },
-        "pageSize": {
-          "label": "Size Of Polling Page",
-          "viewClass": "TextFieldView",
-          "required": false,
-          "placeholder": "Default: 1000"
-        },
-        "expandChildren": {
-          "label": "Expand Children",
-          "viewClass": "CheckBoxView"
-        },
-        "attachFile": {
-          "label": "Enable File Attachments",
-          "viewClass": "CheckBoxView"
-        }
-      }
-    }
-  },
-  "actions": {
-    "lookupFile": {
-      "title": "Get File",
-      "note": "Action to get file by provided path",
-      "main": "./lib/actions/getFile.js",
-      "fields": {
-        "driveId": {
-          "label": "Drive Identity",
-          "required": true,
-          "viewClass": "SelectView",
-          "model": "getDisks",
-          "prompt": "Select a disk"
-        },
-        "attachFile": {
-          "label": "Enable File Attachments",
-          "viewClass": "CheckBoxView"
+          "order": 20,
+          "placeholder": "1970-01-01T00:00:00Z",
+          "help": {
+            "description": "If provided, do not fetch records modified after this time (defaults to flow execution time)"
+          }
         }
       },
-      "metadata": {
-        "in": {
-          "type": "object",
-          "properties": {
-            "path": {
-              "type": "string",
-              "required": true
-            }
-          }
-        },
-        "out": "./lib/schemas/file.out.json"
-      }
-    },
-    "deleteItem": {
-      "title": "Delete File",
-      "note": "Action to delete file by provided path",
-      "main": "./lib/actions/deleteItem.js",
-      "fields": {
-        "driveId": {
-          "label": "Drive Identity",
-          "required": true,
-          "viewClass": "SelectView",
-          "model": "getDisks",
-          "prompt": "Select a disk"
-        }
-      },
-      "metadata": {
-        "in": {
-          "type": "object",
-          "properties": {
-            "path": {
-              "type": "string",
-              "required": true
-            }
-          }
-        },
-        "out": {
-          "type": "object",
-          "properties": {
-            "path": {
-              "type": "string",
-              "required": false
-            }
-          }
-        }
-      }
-    },
-    "upsertFile": {
-      "title": "Upsert File",
-      "note": "Action upserts (create or replace) file by path",
-      "main": "./lib/actions/upsertFile.js",
-      "fields": {
-        "driveId": {
-          "label": "Drive Identity",
-          "required": true,
-          "viewClass": "SelectView",
-          "model": "getDisks",
-          "prompt": "Select a disk"
-        }
-      },
-      "metadata": {
-        "in": {
-          "type": "object",
-          "properties": {
-            "path": {
-              "type": "string",
-              "required": true
-            }
-          }
-        },
-        "out": "./lib/schemas/file.out.json"
-      }
-    },
-    "createFolder": {
-      "title": "Create Folder",
-      "note": "Action creates a new folder by provided path",
-      "main": "./lib/actions/createFolder.js",
-      "fields": {
-        "driveId": {
-          "label": "Drive Identity",
-          "required": true,
-          "viewClass": "SelectView",
-          "model": "getDisks",
-          "prompt": "Select a disk"
-        },
-        "conflictBehaviour": {
-          "label": "Conflict Behaviour",
-          "required": false,
-          "viewClass": "SelectView",
-          "model": {
-            "fail": "Fail",
-            "replace": "Replace",
-            "rename": "Rename"
-          },
-          "prompt": "What to do if folder already exist? Default: Fail"
-        }
-      },
-      "metadata": {
-        "in": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string",
-              "required": true
-            },
-            "path": {
-              "type": "string",
-              "required": true
-            }
-          }
-        },
-        "out": "./lib/schemas/file.out.json"
-      }
+      "dynamicMetadata": true
     }
   }
 }
