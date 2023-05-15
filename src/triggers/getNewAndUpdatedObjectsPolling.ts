@@ -49,7 +49,7 @@ export async function processTrigger(msg, cfg, snapshot) {
   let emitted;
   const arrayOfFoldersProcessor = async (paths) => {
     for (const folder of paths) {
-      this.logger.debug(`Start processing "${folder}" path`);
+      this.logger.info(`Start processing "${folder}" path`);
       const subFolders = await subFolderCollectorAndFileEmitter(folder);
       if (includeSubfolders) await arrayOfFoldersProcessor(subFolders);
     }

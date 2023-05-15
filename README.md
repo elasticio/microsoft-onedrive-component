@@ -9,8 +9,8 @@
 * [Actions](#actions) 
   * [Create Folder](#create-folder) 
   * [Delete File](#delete-file) 
-  * [Upsert File](#upsert-file) 
   * [Get File](#get-file)
+  * [Upsert File](#upsert-file) 
 * [Triggers](#triggers) 
   * [Get New and Updated Objects Polling](#get-new-and-updated-objects-polling)
 
@@ -47,24 +47,25 @@ Redirect URI for platform is `https://{your-tenant-address}/callback/oauth2`
   
 ### Create Folder 
 
-desc
+Create new folder in provided `path`. If `path` not exist component will fail.
 
 #### Configuration Fields
 
 * **Drive Identity** - (dropdown, required): OneDrive instance to work with
-* **Emit strategy when file not found** - (dropdown, optional, `Emit nothing` by default) - select one of options to handle case when file not exist:
-  * **Emit nothing** - component will not produce any messages
-  * **Emit an empty object** - result will be empty object: `{}`
-  * **Throw an error** - error will be thrown
+* **Conflict Behavior** - (dropdown, optional, `Fail` by default) - Select one of options to handle case when folder already exists:
+  * **Fail** - Fails if folder with same name already exists under provided `path`
+  * **Rename** - Rename folder if folder with same name already exists under provided `path`. Examples: `exists` -> `exists 1`, `exists 1` -> `exists 1 1`
+  * **Upsert** - If folder already exist, you will get information bout this folder
 
 #### Input Metadata
 
-* **Lookup Criteria Value** - (string, required): desc
+* **Path** - (string, required): Full path to folder where you need to create new folder, ex: `Monthly reports/November`
+* **Name** - (string, required): Name of new folder
 
 #### Output Metadata
 
-output 
-  
+Metadata of created folder
+
 ### Delete File 
 
 Action to delete item from OneDrive by provided path in selected disc.
@@ -85,6 +86,23 @@ Action to delete item from OneDrive by provided path in selected disc.
 
 * **Path** - (string, required): Full path to item, ex: `Monthly reports/November/Cars sales.pdf` 
 
+### Get File
+
+Lookup a single file by its path.
+
+#### Configuration Fields
+
+* **Drive Identity** - (dropdown, required): OneDrive instance to work with
+* **Enable File Attachments** - (checkbox, optional): If checked, file will be uploaded to local storage and link provided in response
+
+#### Input Metadata
+
+* **Path** - (string, required): Full path to item, ex: `Monthly reports/November/Cars sales.pdf`
+
+#### Output Metadata
+
+File information as JSON object, if `Enable File Attachments` checked, there also will be additional field `attachmentUrl` with link to file on platform
+
 ### Upsert File
 
 Updates (if record exist) or creates a new file
@@ -103,23 +121,6 @@ Updates (if record exist) or creates a new file
 
 Result object from upsert. 
   
-### Get File
-
-Lookup a single file by its path.
-
-#### Configuration Fields
-
-* **Drive Identity** - (dropdown, required): OneDrive instance to work with
-* **Enable File Attachments** - (checkbox, optional): If checked, file will be uploaded to local storage and link provided in response
-
-#### Input Metadata
-
-* **Path** - (string, required): Full path to item, ex: `Monthly reports/November/Cars sales.pdf`
-
-#### Output Metadata
-
-File information as JSON object, if `Enable File Attachments` checked, there also will be additional field `attachmentUrl` with link to file on platform
-
 ## Triggers 
   
 ### Get New and Updated Objects Polling 

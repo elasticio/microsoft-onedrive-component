@@ -1,7 +1,7 @@
 {
   "title": "Microsoft OneDrive component",
   "description": "Microsoft OneDrive component",
-  "version": "2.0.0-dev.8",
+  "version": "2.0.0-dev.12",
   "authClientTypes": [
     "oauth2"
   ],
@@ -15,50 +15,37 @@
     }
   },
   "actions": {
-    "lookupObject": {
-      "main": "./src/actions/lookupObject.js",
-      "title": "Get File",
+    "createFolder": {
+      "main": "./src/actions/createFolder.js",
+      "title": "Create Folder",
       "help": {
-        "description": "Get File",
-        "link": "/components/microsoft-onedrive/index.html#lookup-object"
+        "description": "",
+        "link": "/components/microsoft-onedrive/index.html#create-folder"
       },
       "fields": {
         "driveId": {
           "label": "Drive Identity",
           "required": true,
+          "order": 90,
           "viewClass": "SelectView",
           "model": "getDisks",
           "prompt": "Select a disk"
         },
-        "attachFile": {
-          "label": "Enable File Attachments",
-          "viewClass": "CheckBoxView",
-          "help": {
-            "description": "If checked, file will be uploaded to local storage and link provided in response"
-          }
-        }
-      },
-      "dynamicMetadata": true
-    },
-    "upsertObject": {
-      "main": "./src/actions/upsertObject.js",
-      "title": "Upsert File",
-      "help": {
-        "description": "Upsert Object",
-        "link": "/components/microsoft-onedrive/index.html#upsert-object"
-      },
-      "fields": {
-        "driveId": {
-          "label": "Drive Identity",
-          "required": true,
+        "conflictBehavior": {
+          "label": "Conflict Behavior",
+          "required": false,
           "viewClass": "SelectView",
-          "model": "getDisks",
-          "prompt": "Select a disk"
+          "model": {
+            "fail": "Throw an error",
+            "replace": "Upsert",
+            "rename": "Rename"
+          },
+          "prompt": "What to do if folder already exist? Default: Throw an error"
         }
       },
       "metadata": {
-        "in": "./src/schemas/actions/upsertObject.in.json",
-        "out": "./src/schemas/actions/upsertObject.out.json"
+        "in": "./src/schemas/actions/createFolder.in.json",
+        "out": "./src/schemas/actions/folder.out.json"
       }
     },
     "deleteFile": {
@@ -66,7 +53,7 @@
       "title": "Delete File",
       "help": {
         "description": "",
-        "link": "/microsoft-onedrive-component/#delete-file"
+        "link": "/components/microsoft-onedrive/index.html#delete-file"
       },
       "fields": {
         "driveId": {
@@ -98,37 +85,50 @@
         "out": "./src/schemas/actions/deleteFile.json"
       }
     },
-    "createFolder": {
-      "main": "./src/actions/createFolder.js",
-      "title": "Create Folder",
+    "lookupObject": {
+      "main": "./src/actions/lookupObject.js",
+      "title": "Get File",
       "help": {
-        "description": "",
-        "link": "/microsoft-onedrive-component/#create-folder"
+        "description": "Get File",
+        "link": "/components/microsoft-onedrive/index.html#get-file"
       },
       "fields": {
         "driveId": {
           "label": "Drive Identity",
           "required": true,
-          "order": 90,
           "viewClass": "SelectView",
           "model": "getDisks",
           "prompt": "Select a disk"
         },
-        "conflictBehavior": {
-          "label": "Conflict Behavior",
-          "required": false,
+        "attachFile": {
+          "label": "Enable File Attachments",
+          "viewClass": "CheckBoxView",
+          "help": {
+            "description": "If checked, file will be uploaded to local storage and link provided in response"
+          }
+        }
+      },
+      "dynamicMetadata": true
+    },
+    "upsertObject": {
+      "main": "./src/actions/upsertObject.js",
+      "title": "Upsert File",
+      "help": {
+        "description": "Upsert File",
+        "link": "/components/microsoft-onedrive/index.html#upsert-file"
+      },
+      "fields": {
+        "driveId": {
+          "label": "Drive Identity",
+          "required": true,
           "viewClass": "SelectView",
-          "model": {
-            "fail": "Throw an error",
-            "replace": "Replace",
-            "rename": "Rename"
-          },
-          "prompt": "What to do if folder already exist? Default: Throw an error"
+          "model": "getDisks",
+          "prompt": "Select a disk"
         }
       },
       "metadata": {
-        "in": "./src/schemas/actions/createFolder.in.json",
-        "out": "./src/schemas/actions/folder.out.json"
+        "in": "./src/schemas/actions/upsertObject.in.json",
+        "out": "./src/schemas/actions/upsertObject.out.json"
       }
     }
   },
@@ -139,7 +139,7 @@
       "type": "polling",
       "help": {
         "description": "Poll for new and/or updated objects",
-        "link": "/microsoft-onedrive-component/#get-new-and-updated-objects-polling"
+        "link": "/components/microsoft-onedrive/index.html#get-new-and-updated-objects-polling"
       },
       "fields": {
         "driveId": {

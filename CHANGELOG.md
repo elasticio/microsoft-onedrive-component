@@ -4,6 +4,8 @@
 * Added retries on server errors
 * Added retries on 429 (too many requests) errors
 * Attachment URL provided directly in messages
+* Added support for uploading large files to OneDrive
+* Updated ReadMe 
 
 ## 1.0.6 (September 23, 2022)
 

@@ -82,7 +82,7 @@ jobs:
           override-ci-command: npm install
       - run:
           name: Audit Dependencies
-          command: npm audit
+          command: npm audit --production --audit-level=high
       - run:
           name: Running Mocha Tests
           command: npm test

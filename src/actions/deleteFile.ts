@@ -13,7 +13,7 @@ export async function processAction(msg: any, cfg: any) {
   try {
     await client.deleteItem(path);
     this.logger.info('"Delete File" action is done, emitting...');
-    await this.emit('data', messages.newMessageWithBody(path));
+    await this.emit('data', messages.newMessageWithBody({ path }));
   } catch (err) {
     if (err.response?.status === 404) {
       if (ifNotFound === 'emitNothing') return;
