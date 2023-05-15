@@ -53,7 +53,7 @@
       "title": "Delete File",
       "help": {
         "description": "",
-        "link": "/components/microsoft-onedrive/index.html#delete-file"
+        "link": "/components/onedrive/index.html#delete-file"
       },
       "fields": {
         "driveId": {
@@ -90,7 +90,7 @@
       "title": "Get File",
       "help": {
         "description": "Get File",
-        "link": "/components/microsoft-onedrive/index.html#get-file"
+        "link": "/components/onedrive/index.html#get-file"
       },
       "fields": {
         "driveId": {
@@ -115,7 +115,7 @@
       "title": "Upsert File",
       "help": {
         "description": "Upsert File",
-        "link": "/components/microsoft-onedrive/index.html#upsert-file"
+        "link": "/components/onedrive/index.html#upsert-file"
       },
       "fields": {
         "driveId": {
@@ -139,7 +139,7 @@
       "type": "polling",
       "help": {
         "description": "Poll for new and/or updated objects",
-        "link": "/components/microsoft-onedrive/index.html#get-new-and-updated-objects-polling"
+        "link": "/components/onedrive/index.html#get-new-and-updated-objects-polling"
       },
       "fields": {
         "driveId": {
