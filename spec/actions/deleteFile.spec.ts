@@ -23,7 +23,7 @@ describe('"Delete File" action', () => {
       execRequest = sinon.stub(Client.prototype, 'deleteItem').callsFake(async () => fakeResponse);
       await processAction.call(context, msg, cfg);
       expect(execRequest.callCount).to.be.equal(1);
-      expect(context.emit.getCall(0).args[1].body).to.be.deep.equal(msg.body.path);
+      expect(context.emit.getCall(0).args[1].body).to.be.deep.equal({ path: msg.body.path });
       expect(execRequest.getCall(0).args[0]).to.be.deep.equal(msg.body.path);
     });
     it('ifNotFound - emitNothing', async () => {
