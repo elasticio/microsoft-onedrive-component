@@ -1,4 +1,4 @@
-## 2.0.0 (May 4, 2023)
+## 2.0.0 (May 19, 2023)
 * New version of component, no backward compatibility! Written from scratch using TS and last versions of libraries
 * New authentication mechanism
 * Added retries on server errors
