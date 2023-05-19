@@ -22,9 +22,17 @@ describe('"Upsert File" action', () => {
     afterEach(() => {
       sinon.restore();
     });
-    it('successes', async () => {
-      const cfg = {};
+    it('uploadSingleFile: false', async () => {
+      const cfg = { uploadSingleFile: false };
       const msg = { body: { files: [{ url: 'some url', path: '/1' }] } };
+      const { body } = await processAction.call(getContext(), msg, cfg);
+      expect(execRequest.callCount).to.be.equal(1);
+      expect(body).to.be.deep.equal([fakeUploadLargeFile]);
+      expect(execRequest.getCall(0).args[0]).to.be.deep.equal(fakeCreateUploadSessionResponse.uploadUrl);
+    });
+    it('uploadSingleFile: true', async () => {
+      const cfg = { uploadSingleFile: true };
+      const msg = { body: { url: 'some url', path: '/1' } };
       const { body } = await processAction.call(getContext(), msg, cfg);
       expect(execRequest.callCount).to.be.equal(1);
       expect(body).to.be.deep.equal([fakeUploadLargeFile]);

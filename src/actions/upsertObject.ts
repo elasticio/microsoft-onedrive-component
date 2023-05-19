@@ -9,7 +9,8 @@ let client: Client;
 
 export async function processAction(msg: any, cfg: any) {
   this.logger.info('"Upsert File" action started');
-  const { files } = msg.body;
+  let { files } = msg.body;
+  if (cfg.uploadSingleFile) files = [msg.body];
   client ||= new Client(this, cfg);
   client.setLogger(this.logger);
   const attachmentsProcessor = new commons.AttachmentProcessor(getUserAgent(), msg.id);
