@@ -110,9 +110,14 @@ Updates (if record exist) or creates a new file
 #### Configuration Fields
 
 * **Drive Identity** - (dropdown, required): OneDrive instance to work with
+* **Upload single file** - (checkbox, optional): Use this option if you want to upload a single file
 
 #### Input Metadata
+If `Upload single file` checked, there will be 2 fields:
+* **URL** - (string, required): link to file on Internet or platform
+* **Path** - (string, required): Full path to item on OneDrive, ex: `Monthly reports/November/Cars sales.pdf`
 
+If `Upload single file` unchecked:
 * **Files** - (array, required): Collection of files to upload, each record contains object with two keys:
   * **URL** - (string, required): link to file on Internet or platform
   * **Path** - (string, required): Full path to item on OneDrive, ex: `Monthly reports/November/Cars sales.pdf`

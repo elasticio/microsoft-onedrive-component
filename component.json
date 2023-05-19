@@ -1,7 +1,7 @@
 {
   "title": "Microsoft OneDrive component",
   "description": "Microsoft OneDrive component",
-  "version": "2.0.0-dev.16",
+  "version": "2.0.0-dev.17",
   "authClientTypes": [
     "oauth2"
   ],
@@ -123,15 +123,22 @@
         "driveId": {
           "label": "Drive Identity",
           "required": true,
+          "order": 90,
           "viewClass": "SelectView",
           "model": "getDisks",
           "prompt": "Select a disk"
+        },
+        "uploadSingleFile": {
+          "label": "Upload single file",
+          "viewClass": "CheckBoxView",
+          "required": false,
+          "order": 70,
+          "help": {
+            "description": "Use this option if you want to upload a single file"
+          }
         }
       },
-      "metadata": {
-        "in": "./src/schemas/actions/upsertObject.in.json",
-        "out": "./src/schemas/actions/upsertObject.out.json"
-      }
+      "dynamicMetadata": true
     }
   },
   "triggers": {

@@ -2,6 +2,8 @@ import { messages } from 'elasticio-node';
 import * as commons from '@elastic.io/component-commons-library';
 import { getUserAgent } from '../utils';
 import Client from '../OneDriveClient';
+import upsertObjectInSchema from '../schemas/actions/upsertObject.in.json';
+import upsertObjectOutSchema from '../schemas/actions/upsertObject.out.json';
 
 let client: Client;
 
@@ -32,5 +34,13 @@ export async function getDisks(cfg) {
   return client.getDisks();
 }
 
+export async function getMetaModel(cfg) {
+  return {
+    in: cfg.uploadSingleFile ? upsertObjectInSchema.properties.files.items : upsertObjectInSchema,
+    out: upsertObjectOutSchema
+  };
+}
+
 module.exports.process = processAction;
 module.exports.getDisks = getDisks;
+module.exports.getMetaModel = getMetaModel;
