@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "required": true
+    },
+    "path": {
+      "type": "string",
+      "title": "Path",
+      "help": {
+        "description": "Full path where needs to create folder, ex: `Monthly reports/November/`, leave empty or set as \"/\" for root"
+      },
+      "required": false
+    }
+  }
+}

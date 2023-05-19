@@ -2,7 +2,7 @@ version: 2.1
 parameters:
   node-version:
     type: string
-    default: "16.13.2"
+    default: "18.13.0"
 orbs:
   node: circleci/node@5.0.0
   slack: circleci/slack@4.5.3
@@ -72,23 +72,23 @@ commands:
 jobs:
   test:
     docker:
-      - image: circleci/node:16-stretch
+      - image: cimg/node:18.13.0
     steps:
       - checkout
       - node/install:
           node-version: << pipeline.parameters.node-version >>
-      - run:
-          name: Audit Dependencies
-          command: npm audit --production --audit-level=high
       - node/install-packages:
           cache-path: ./node_modules
           override-ci-command: npm install
+      - run:
+          name: Audit Dependencies
+          command: npm audit --production --audit-level=high
       - run:
           name: Running Mocha Tests
           command: npm test
   build:
     docker:
-      - image: circleci/node:16-stretch
+      - image: cimg/node:18.13.0
         user: root
     steps:
       - checkout
@@ -118,6 +118,8 @@ workflows:
     jobs:
       - build:
           name: "Build and publish docker image"
+          context:
+            - componentspusher
           filters:
             branches:
               ignore: /.*/

@@ -1,3 +1,12 @@
+## 2.0.0 (May 19, 2023)
+* New version of component, no backward compatibility! Written from scratch using TS and last versions of libraries
+* New authentication mechanism
+* Added retries on server errors
+* Added retries on 429 (too many requests) errors
+* Attachment URL provided directly in messages
+* Added support for uploading large files to OneDrive
+* Updated ReadMe 
+
 ## 1.0.6 (September 23, 2022)
 
 * Update Sailor version to 2.6.29

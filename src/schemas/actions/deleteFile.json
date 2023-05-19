@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "path": {
+      "type": "string",
+      "title": "Path",
+      "help": {
+        "description": "Full path to item, ex: `Monthly reports/November/Cars sales.pdf`"
+      },
+      "required": true
+    }
+  }
+}
