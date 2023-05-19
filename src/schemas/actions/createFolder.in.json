@@ -2,6 +2,7 @@
   "type": "object",
   "properties": {
     "name": {
+      "title": "Name",
       "type": "string",
       "required": true
     },

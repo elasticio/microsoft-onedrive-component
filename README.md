@@ -54,8 +54,8 @@ Create new folder in provided `path`. If `path` not exist component will fail.
 * **Drive Identity** - (dropdown, required): OneDrive instance to work with
 * **Conflict Behavior** - (dropdown, optional, `Fail` by default) - Select one of options to handle case when folder already exists:
   * **Fail** - Fails if folder with same name already exists under provided `path`
-  * **Rename** - Rename folder if folder with same name already exists under provided `path`. Examples: `exists` -> `exists 1`, `exists 1` -> `exists 1 1`
-  * **Upsert** - If folder already exist, you will get information bout this folder
+  * **Generate new name** - If folder with same name already exists under provided `path` then will be created new folder with different name. Examples: `folder_name` (already exist) -> `folder_name 1` (will be created), `folder_name 1` (already exist) -> `folder_name 1 1` (will be created)
+  * **Upsert** - If folder already exist, you will get information about this folder
 
 #### Input Metadata
 
